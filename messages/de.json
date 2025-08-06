@@ -1,0 +1,221 @@
+{
+  "hero": {
+    "title": "Moderne Art für",
+    "titleHighlight": "gesunden Schlaf",
+    "description": "Intelligenter Ring, der Ihren Schlaf, körperliche Aktivität, Körpertemperatur und Herzfrequenz überwacht. Alles in einem eleganten Gerät.",
+    "orderNow": "Jetzt bestellen",
+    "learnMore": "Mehr erfahren"
+  },
+  "features": {
+    "title": "Alles was Sie brauchen",
+    "titleHighlight": "in einem Ring",
+    "description": "Smart Ring kombiniert fortschrittliche Gesundheitsüberwachungstechnologien in einem eleganten, diskreten Gerät, das Sie 24/7 tragen.",
+    "sleep": {
+      "title": "Schlafüberwachung",
+      "description": "Verfolgen Sie Ihre Schlafqualität, REM- und Tiefschlafphasen. Erhalten Sie personalisierte Empfehlungen für bessere Erholung."
+    },
+    "activity": {
+      "title": "Körperliche Aktivität",
+      "description": "Überwachen Sie Schritte, Kalorien, Distanz und Trainingsintensität. Setzen Sie Ziele und verfolgen Sie Ihren Fortschritt."
+    },
+    "temperature": {
+      "title": "Körpertemperatur",
+      "description": "Kontinuierliche Körpertemperaturüberwachung hilft, Veränderungen in Gesundheit und Menstruationszyklus zu erkennen."
+    },
+    "heartRate": {
+      "title": "Herzfrequenz",
+      "description": "Präzise Messungen der Ruheherzfrequenz und während der Aktivität. Warnungen bei abnormalen Werten."
+    },
+    "stats": {
+      "batteryLife": "Tage Akkulaufzeit",
+      "accuracy": "Messgenauigkeit",
+      "monitoring": "Stunden Überwachung",
+      "waterproof": "Meter wasserdicht"
+    }
+  },
+  "lifestyle": {
+    "title": "Perfekter Begleiter",
+    "titleHighlight": "in jeder Situation",
+    "description": "Smart Ring passt sich Ihrem Lebensstil an und liefert präzise Daten, egal ob Sie arbeiten, schlafen oder Sport treiben.",
+    "work": {
+      "title": "Bei der Arbeit",
+      "description": "Diskrete Überwachung von Stress und Aktivität während langer Bürostunden."
+    },
+    "sleep": {
+      "title": "Beim Schlafen",
+      "description": "Präzise Verfolgung der Schlafphasen für bessere Körperregeneration."
+    },
+    "workout": {
+      "title": "Beim Training",
+      "description": "Herzfrequenz- und Intensitätsüberwachung während körperlicher Aktivität."
+    },
+    "daily": {
+      "title": "Im täglichen Leben",
+      "description": "Elegantes Design, das zu jedem Stil und Anlass passt."
+    },
+    "benefits": {
+      "sync": {
+        "title": "Schnelle Synchronisation",
+        "description": "Automatische Datensynchronisation mit der mobilen App in Echtzeit."
+      },
+      "waterproof": {
+        "title": "Wasserdicht",
+        "description": "Wasserbeständigkeit bis 50 Meter - perfekt zum Schwimmen und für den täglichen Gebrauch."
+      },
+      "app": {
+        "title": "Mobile App",
+        "description": "Intuitive App mit detaillierten Analysen und personalisierten Einblicken."
+      }
+    }
+  },
+  "specs": {
+    "title": "Technische",
+    "titleHighlight": "Spezifikationen",
+    "description": "Lernen Sie die detaillierten technischen Parameter des Smart Ring kennen - ein Gerät, das mit Präzision, Haltbarkeit und Komfort entwickelt wurde.",
+    "dimensions": {
+      "category": "Abmessungen und Gewicht",
+      "width": "Breite",
+      "thickness": "Dicke",
+      "weight": "Gewicht",
+      "sizes": "Größen",
+      "widthDesc": "Elegantes, diskretes Profil",
+      "thicknessDesc": "Ultra-dünnes Design",
+      "weightDesc": "Je nach Größe",
+      "sizesDesc": "Verfügbare US-Größen"
+    },
+    "battery": {
+      "category": "Akku und Laden",
+      "life": "Akkulaufzeit",
+      "charging": "Ladezeit",
+      "type": "Akkutyp",
+      "method": "Laden",
+      "lifeDesc": "Bei normalem Gebrauch",
+      "chargingDesc": "Vollständige Ladung",
+      "typeDesc": "Lithium-Ionen-Akku",
+      "methodDesc": "Magnetische Dockingstation"
+    },
+    "sensors": {
+      "category": "Sensoren und Funktionen",
+      "heartRate": "Herzfrequenzmesser",
+      "temperature": "Temperatur",
+      "accelerometer": "Beschleunigungsmesser",
+      "gyroscope": "Gyroskop",
+      "heartRateDesc": "Präzise Herzfrequenzmessung",
+      "temperatureDesc": "Messgenauigkeit",
+      "accelerometerDesc": "Aktivitätsverfolgung",
+      "gyroscopeDesc": "Bewegungserkennung"
+    },
+    "materials": {
+      "category": "Materialien und Widerstand",
+      "material": "Material",
+      "coating": "Beschichtung",
+      "waterproof": "Wasserdicht",
+      "temperature": "Betriebstemperatur",
+      "materialDesc": "Medizinische Qualität",
+      "coatingDesc": "Kratzfest",
+      "waterproofDesc": "Schwimmen und Tauchen",
+      "temperatureDesc": "Weiter Bereich"
+    },
+    "comparison": {
+      "title": "Warum Smart Ring?",
+      "battery": {
+        "title": "Längste Akkulaufzeit",
+        "description": "7 Tage vs 1-2 Tage Konkurrenz"
+      },
+      "design": {
+        "title": "Leichtestes Design",
+        "description": "4-6g vs 8-12g andere Geräte"
+      },
+      "accuracy": {
+        "title": "Genaueste Messungen",
+        "description": "99% Präzision vs 85-90% andere"
+      }
+    }
+  },
+  "variants": {
+    "title": "Wählen Sie Ihren",
+    "titleHighlight": "perfekten Stil",
+    "description": "Smart Ring ist in drei eleganten Farbvarianten erhältlich. Jede kombiniert fortschrittliche Technologie mit außergewöhnlichem Design.",
+    "black": {
+      "name": "Midnight Black",
+      "color": "Schwarz",
+      "description": "Eleganter schwarzer Ring mit matter PVD-Oberfläche. Perfekt für den täglichen Gebrauch.",
+      "features": ["Matte Oberfläche", "Kratzfest", "Diskretes Design"]
+    },
+    "silver": {
+      "name": "Titanium Silver",
+      "color": "Silber",
+      "description": "Klassischer silberner Ring aus natürlichem Titan. Zeitlos und universell.",
+      "features": ["Natürliches Titan", "Hypoallergen", "Klassisches Aussehen"]
+    },
+    "gold": {
+      "name": "Rose Gold",
+      "color": "Gold",
+      "description": "Luxuriöser Ring in Roségold-Farbe. Zeichnet sich durch Eleganz und Stil aus.",
+      "features": ["PVD-Beschichtung", "Luxuriöses Aussehen", "Limitierte Auflage"]
+    },
+    "selectColor": "Farbe wählen:",
+    "characteristics": "Eigenschaften:",
+    "sizeGuide": "Größenführer",
+    "sizeNote": "US-Größen. Verwenden Sie unser kostenloses Größen-Kit.",
+    "limitedEdition": "Limitierte Auflage",
+    "freeShipping": "+ kostenloser Versand"
+  },
+  "order": {
+    "title": "Bestellen Sie heute",
+    "titleHighlight": "Smart Ring",
+    "description": "Schließen Sie sich Tausenden zufriedener Benutzer an, die bereits ihre Schlafqualität und Gesundheit mit Smart Ring verbessert haben. Kostenloser Versand und 30 Tage Rückgabe.",
+    "summary": "Bestellübersicht",
+    "product": "Smart Ring - Midnight Black",
+    "size": "Größe: M (8-9 US)",
+    "price": "Produktpreis",
+    "shipping": "Versand",
+    "free": "Kostenlos",
+    "total": "Gesamt",
+    "benefits": {
+      "freeShipping": "Kostenloser Versand in 24h",
+      "returns": "30 Tage Rückgabe",
+      "warranty": "2 Jahre Garantie",
+      "payments": "Sichere Zahlungen"
+    },
+    "form": {
+      "contact": "Kontaktdaten",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "address": "Lieferadresse",
+      "street": "Straße und Nummer",
+      "city": "Stadt",
+      "postalCode": "Postleitzahl",
+      "product": "Produktauswahl",
+      "color": "Farbe",
+      "size": "Größe",
+      "required": "*",
+      "submit": "Jetzt bestellen - 399€",
+      "terms": "Durch Klicken auf \"Jetzt bestellen\" akzeptieren Sie unsere Verkaufsbedingungen und Datenschutzrichtlinie"
+    }
+  },
+  "footer": {
+    "description": "Moderne Lösungen für Gesundheits- und Schlafüberwachung. Schließen Sie sich Tausenden zufriedener Benutzer weltweit an.",
+    "quickLinks": "Schnelle Links",
+    "support": "Support",
+    "links": {
+      "features": "Funktionen",
+      "specs": "Spezifikationen",
+      "order": "Bestellen",
+      "app": "App",
+      "contact": "Kontakt",
+      "faq": "FAQ",
+      "warranty": "Garantie",
+      "returns": "Rückgabe"
+    },
+    "legal": {
+      "copyright": "© 2024 Smart Ring. Alle Rechte vorbehalten.",
+      "privacy": "Datenschutzrichtlinie",
+      "terms": "Nutzungsbedingungen",
+      "cookies": "Cookies"
+    }
+  },
+  "currency": "€"
+}
