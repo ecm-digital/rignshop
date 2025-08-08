@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import LanguageSelector from '@/components/LanguageSelector';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,9 +57,8 @@ export default function Header() {
             </a>
           </nav>
 
-          {/* Language selector and CTA */}
-          <div className="flex items-center space-x-4">
-            <LanguageSelector />
+          {/* CTA */}
+          <div className="flex items-center">
             <a
               href="#order-section"
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
