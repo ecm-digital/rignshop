@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { createContext, useContext } from 'react';
 
 export type Language = 'pl' | 'en' | 'de';
 
-const translations = {
+export const translations = {
   pl: {
     // Header
     features: 'Funkcje',
@@ -29,6 +29,21 @@ const translations = {
     heartRate: 'Tętno',
     heartRateDescription: 'Precyzyjne pomiary tętna 24/7',
     
+    // Stats
+    statsTitle: 'Specyfikacje techniczne',
+    batteryLife: 'dni pracy baterii',
+    measurementAccuracy: 'precyzja pomiarów',
+    monitoring: 'monitorowanie',
+    waterResistance: 'wodoodporność',
+    
+    // Gallery
+    galleryTitle: 'Galeria produktu',
+    colorVariants: 'Warianty kolorystyczne',
+    closeUps: 'Zbliżenia',
+    colorBlack: 'Czarny',
+    colorSilver: 'Srebrny',
+    colorGold: 'Złoty',
+    
     // Order
     orderTitle: 'Zamów już dziś Smart Ring',
     price: '1299 zł',
@@ -38,7 +53,7 @@ const translations = {
     
     // Footer
     footerDescription: 'Nowoczesne rozwiązania do monitorowania zdrowia i snu',
-    copyright: '© 2024 Smart Ring. Wszystkie prawa zastrzeżone.'
+    copyright: ' 2024 Smart Ring. Wszystkie prawa zastrzeżone.'
   },
   en: {
     // Header
@@ -63,6 +78,21 @@ const translations = {
     temperatureDescription: 'Continuous temperature monitoring',
     heartRate: 'Heart Rate',
     heartRateDescription: 'Precise heart rate measurements 24/7',
+    
+    // Stats
+    statsTitle: 'Technical specifications',
+    batteryLife: 'days battery life',
+    measurementAccuracy: 'measurement accuracy',
+    monitoring: 'monitoring',
+    waterResistance: 'water resistance',
+    
+    // Gallery
+    galleryTitle: 'Product Gallery',
+    colorVariants: 'Color Variants',
+    closeUps: 'Close-ups',
+    colorBlack: 'Black',
+    colorSilver: 'Silver',
+    colorGold: 'Gold',
     
     // Order
     orderTitle: 'Order Smart Ring Today',
@@ -99,6 +129,21 @@ const translations = {
     heartRate: 'Herzfrequenz',
     heartRateDescription: 'Präzise Herzfrequenzmessungen 24/7',
     
+    // Stats
+    statsTitle: 'Technische Spezifikationen',
+    batteryLife: 'Tage Akkulaufzeit',
+    measurementAccuracy: 'Messgenauigkeit',
+    monitoring: 'Überwachung',
+    waterResistance: 'Wasserfestigkeit',
+    
+    // Gallery
+    galleryTitle: 'Produktgalerie',
+    colorVariants: 'Farbvarianten',
+    closeUps: 'Nahaufnahmen',
+    colorBlack: 'Schwarz',
+    colorSilver: 'Silber',
+    colorGold: 'Gold',
+    
     // Order
     orderTitle: 'Bestellen Sie Smart Ring heute',
     price: '299€',
@@ -112,24 +157,18 @@ const translations = {
   }
 };
 
+export type LanguageContextValue = {
+  language: Language;
+  changeLanguage: (newLanguage: Language) => void;
+  t: (key: keyof typeof translations.pl) => string;
+};
+
+export const LanguageContext = createContext<LanguageContextValue>({
+  language: 'pl',
+  changeLanguage: () => {},
+  t: (key) => translations.pl[key],
+});
+
 export function useLanguage() {
-  const [language, setLanguage] = useState<Language>('pl');
-
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('language') as Language;
-    if (savedLanguage && ['pl', 'en', 'de'].includes(savedLanguage)) {
-      setLanguage(savedLanguage);
-    }
-  }, []);
-
-  const changeLanguage = (newLanguage: Language) => {
-    setLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
-  };
-
-  const t = (key: keyof typeof translations.pl) => {
-    return translations[language][key] || translations.pl[key];
-  };
-
-  return { language, changeLanguage, t };
+  return useContext(LanguageContext);
 }

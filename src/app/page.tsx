@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/hooks/useLanguage';
 import LanguageSelector from '@/components/LanguageSelector';
+import ProductGallery from '@/components/ProductGallery';
 
 export default function Home() {
   const { t } = useLanguage();
@@ -101,25 +102,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Product Gallery */}
+      <ProductGallery />
+
       {/* Stats Section */}
       <section className="py-16 bg-blue-600">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
             <div>
               <div className="text-3xl md:text-4xl font-bold mb-2">7</div>
-              <div className="text-sm md:text-base opacity-90">dni pracy baterii</div>
+              <div className="text-sm md:text-base opacity-90">{t('batteryLife')}</div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold mb-2">99%</div>
-              <div className="text-sm md:text-base opacity-90">precyzja pomiarów</div>
+              <div className="text-sm md:text-base opacity-90">{t('measurementAccuracy')}</div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold mb-2">24/7</div>
-              <div className="text-sm md:text-base opacity-90">monitorowanie</div>
+              <div className="text-sm md:text-base opacity-90">{t('monitoring')}</div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold mb-2">50m</div>
-              <div className="text-sm md:text-base opacity-90">wodoodporność</div>
+              <div className="text-sm md:text-base opacity-90">{t('waterResistance')}</div>
             </div>
           </div>
         </div>
