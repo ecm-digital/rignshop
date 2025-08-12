@@ -1,11 +1,21 @@
 'use client';
 
 import { useLanguage } from '@/hooks/useLanguage';
+import { useState, useEffect } from 'react';
 import LanguageSelector from '@/components/LanguageSelector';
 import ProductGallery from '@/components/ProductGallery';
 
 export default function Home() {
   const { t } = useLanguage();
+  const [detectedCountry, setDetectedCountry] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Get auto-detected country from localStorage
+    const country = localStorage.getItem('autoDetectedCountry');
+    if (country) {
+      setDetectedCountry(country);
+    }
+  }, []);
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -46,6 +56,15 @@ export default function Home() {
       <section className="pt-24 pb-20 bg-gradient-to-br from-blue-50 to-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
+            {/* Country detection indicator */}
+            {detectedCountry && (
+              <div className="mb-4 inline-flex items-center space-x-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-sm">
+                <span className="text-green-600">🌍</span>
+                <span>{t('countryDetected')}: {detectedCountry}</span>
+                <span className="text-xs opacity-75">{t('languageSetAutomatically')}</span>
+              </div>
+            )}
+            
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               {t('heroTitle')}
               <br />

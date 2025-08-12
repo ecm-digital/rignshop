@@ -12,6 +12,10 @@ export const translations = {
     order: 'Zamów',
     orderNow: 'Zamów teraz',
     
+    // Country detection
+    countryDetected: 'Wykryto kraj',
+    languageSetAutomatically: '(język ustawiony automatycznie)',
+    
     // Hero
     heroTitle: 'Nowoczesny sposób',
     heroTitleHighlight: 'na zdrowy sen',
@@ -62,6 +66,10 @@ export const translations = {
     order: 'Order',
     orderNow: 'Order Now',
     
+    // Country detection
+    countryDetected: 'Country detected',
+    languageSetAutomatically: '(language set automatically)',
+    
     // Hero
     heroTitle: 'Modern way',
     heroTitleHighlight: 'to healthy sleep',
@@ -111,6 +119,10 @@ export const translations = {
     specifications: 'Spezifikationen',
     order: 'Bestellen',
     orderNow: 'Jetzt bestellen',
+    
+    // Country detection
+    countryDetected: 'Land erkannt',
+    languageSetAutomatically: '(Sprache automatisch eingestellt)',
     
     // Hero
     heroTitle: 'Moderner Weg',
