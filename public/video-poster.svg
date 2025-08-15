@@ -1,0 +1,77 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  
+  <!-- Abstract tech patterns -->
+  <circle cx="300" cy="200" r="150" fill="url(#ring)" opacity="0.1"/>
+  <circle cx="1600" cy="300" r="200" fill="url(#ring)" opacity="0.08"/>
+  <circle cx="400" cy="800" r="180" fill="url(#ring)" opacity="0.06"/>
+  <circle cx="1700" cy="700" r="120" fill="url(#ring)" opacity="0.1"/>
+  
+  <!-- Smart Ring Visualization -->
+  <g transform="translate(960, 540)">
+    <!-- Outer ring glow -->
+    <circle cx="0" cy="0" r="120" fill="url(#ring)" opacity="0.3" filter="blur(20px)"/>
+    
+    <!-- Main ring -->
+    <circle cx="0" cy="0" r="80" fill="url(#ring)" stroke="white" stroke-width="4" opacity="0.9"/>
+    
+    <!-- Inner ring -->
+    <circle cx="0" cy="0" r="50" fill="white" opacity="0.8"/>
+    
+    <!-- Center dot -->
+    <circle cx="0" cy="0" r="20" fill="#1e40af"/>
+    
+    <!-- Tech details -->
+    <circle cx="-30" cy="-30" r="8" fill="#06b6d4" opacity="0.8"/>
+    <circle cx="30" cy="-30" r="8" fill="#3b82f6" opacity="0.8"/>
+    <circle cx="0" cy="40" r="6" fill="#ffffff" opacity="0.9"/>
+  </g>
+  
+  <!-- Floating particles -->
+  <circle cx="200" cy="150" r="3" fill="white" opacity="0.6"/>
+  <circle cx="1800" cy="250" r="2" fill="#06b6d4" opacity="0.7"/>
+  <circle cx="150" cy="900" r="4" fill="white" opacity="0.5"/>
+  <circle cx="1750" cy="800" r="3" fill="#3b82f6" opacity="0.6"/>
+  <circle cx="800" cy="100" r="2" fill="#06b6d4" opacity="0.8"/>
+  <circle cx="1100" cy="950" r="3" fill="white" opacity="0.4"/>
+  
+  <!-- Grid pattern overlay -->
+  <g opacity="0.05">
+    <path d="M0 0 L1920 0" stroke="white" stroke-width="1"/>
+    <path d="M0 108 L1920 108" stroke="white" stroke-width="1"/>
+    <path d="M0 216 L1920 216" stroke="white" stroke-width="1"/>
+    <path d="M0 324 L1920 324" stroke="white" stroke-width="1"/>
+    <path d="M0 432 L1920 432" stroke="white" stroke-width="1"/>
+    <path d="M0 540 L1920 540" stroke="white" stroke-width="1"/>
+    <path d="M0 648 L1920 648" stroke="white" stroke-width="1"/>
+    <path d="M0 756 L1920 756" stroke="white" stroke-width="1"/>
+    <path d="M0 864 L1920 864" stroke="white" stroke-width="1"/>
+    <path d="M0 972 L1920 972" stroke="white" stroke-width="1"/>
+    <path d="M0 1080 L1920 1080" stroke="white" stroke-width="1"/>
+    
+    <path d="M0 0 L0 1080" stroke="white" stroke-width="1"/>
+    <path d="M192 0 L192 1080" stroke="white" stroke-width="1"/>
+    <path d="M384 0 L384 1080" stroke="white" stroke-width="1"/>
+    <path d="M576 0 L576 1080" stroke="white" stroke-width="1"/>
+    <path d="M768 0 L768 1080" stroke="white" stroke-width="1"/>
+    <path d="M960 0 L960 1080" stroke="white" stroke-width="1"/>
+    <path d="M1152 0 L1152 1080" stroke="white" stroke-width="1"/>
+    <path d="M1344 0 L1344 1080" stroke="white" stroke-width="1"/>
+    <path d="M1536 0 L1536 1080" stroke="white" stroke-width="1"/>
+    <path d="M1728 0 L1728 1080" stroke="white" stroke-width="1"/>
+    <path d="M1920 0 L1920 1080" stroke="white" stroke-width="1"/>
+  </g>
+</svg>

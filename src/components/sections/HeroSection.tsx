@@ -13,124 +13,133 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Full-screen video background */}
+      <div className="absolute inset-0 w-full h-full">
+        {/* Debug info */}
+        <div className="absolute top-4 left-4 z-20 bg-black text-white p-2 text-xs">
+          Video Debug: Check console
+        </div>
+        
+        {/* Simple video test */}
+        <video
+          src="/hero-video.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+          onLoadStart={() => console.log('🎬 Video loading started')}
+          onCanPlay={() => console.log('✅ Video can play')}
+          onError={(e) => console.error('❌ Video error:', e)}
+          onLoadedData={() => console.log('📊 Video data loaded')}
+          onLoad={() => console.log('🔄 Video load event')}
+          ref={(el) => {
+            if (el) {
+              console.log('🎥 Video element mounted:', el);
+              console.log('🔗 Video src:', el.src);
+              console.log('📱 Video readyState:', el.readyState);
+              console.log('🎯 Video currentSrc:', el.currentSrc);
+            }
+          }}
+        />
+        
+        {/* Fallback background if video fails */}
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800"></div>
+        
+        {/* Video overlay for better text readability */}
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+      </div>
       
-      <div className="container mx-auto px-4 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
+      {/* Content overlay */}
+      <div className="relative z-10 container mx-auto px-4 py-20 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="max-w-4xl mx-auto"
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight drop-shadow-2xl"
           >
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
-            >
-              {t('title')}
-              <br />
-              <span className="text-blue-600">{t('titleHighlight')}</span>
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0"
-            >
-              {t('description')}
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-            >
-              <Button
-                onClick={scrollToOrder}
-                size="lg"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg"
-              >
-                {t('orderNow')}
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-4 text-lg"
-                onClick={() => {
-                  const featuresSection = document.getElementById('features-section');
-                  featuresSection?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                {t('learnMore')}
-              </Button>
-            </motion.div>
-          </motion.div>
+            {t('title')}
+            <br />
+            <span className="text-blue-400 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              {t('titleHighlight')}
+            </span>
+          </motion.h1>
           
-          {/* Right content - Product image */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.7 }}
+            className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg"
           >
-            <div className="relative w-full max-w-lg mx-auto">
-              {/* Floating animation for the ring */}
-              <motion.div
-                animate={{ 
-                  y: [0, -20, 0],
-                  rotate: [0, 5, 0]
-                }}
-                transition={{ 
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="relative z-10"
-              >
-                {/* Placeholder for smart ring image */}
-                <div className="w-80 h-80 mx-auto bg-gradient-to-br from-gray-800 to-gray-600 rounded-full flex items-center justify-center shadow-2xl">
-                  <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center">
-                    <div className="w-16 h-16 bg-white rounded-full opacity-20"></div>
-                  </div>
-                </div>
-              </motion.div>
-              
-              {/* Background glow effect */}
-              <div className="absolute inset-0 bg-blue-500 rounded-full blur-3xl opacity-20 scale-110"></div>
-              
-              {/* Floating feature badges */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 1 }}
-                className="absolute -top-4 -right-4 bg-white rounded-full p-3 shadow-lg"
-              >
-                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">💤</span>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
-                className="absolute -bottom-4 -left-4 bg-white rounded-full p-3 shadow-lg"
-              >
-                <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">❤️</span>
-                </div>
-              </motion.div>
+            {t('description')}
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.9 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          >
+            <Button
+              onClick={scrollToOrder}
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 text-xl font-semibold shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+            >
+              {t('orderNow')}
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-10 py-5 text-xl font-semibold shadow-2xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm bg-white/10"
+              onClick={() => {
+                const featuresSection = document.getElementById('features-section');
+                featuresSection?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              {t('learnMore')}
+            </Button>
+          </motion.div>
+        </motion.div>
+      </div>
+      
+      {/* Floating smart ring visualization */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5, delay: 1.2 }}
+        className="absolute top-1/2 right-10 transform -translate-y-1/2 hidden xl:block"
+      >
+        <div className="relative">
+          <motion.div
+            animate={{ 
+              y: [0, -20, 0],
+              rotate: [0, 5, 0]
+            }}
+            transition={{ 
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="relative z-10"
+          >
+            <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center shadow-2xl border-4 border-white/20">
+              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-blue-600 rounded-full opacity-80"></div>
+              </div>
             </div>
           </motion.div>
+          
+          {/* Glow effect */}
+          <div className="absolute inset-0 bg-blue-400 rounded-full blur-2xl opacity-30 scale-150"></div>
         </div>
-      </div>
+      </motion.div>
       
       {/* Scroll indicator */}
       <motion.div
@@ -142,9 +151,9 @@ export default function HeroSection() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center"
+          className="w-6 h-10 border-2 border-white rounded-full flex justify-center"
         >
-          <div className="w-1 h-3 bg-gray-400 rounded-full mt-2"></div>
+          <div className="w-1 h-3 bg-white rounded-full mt-2"></div>
         </motion.div>
       </motion.div>
     </section>

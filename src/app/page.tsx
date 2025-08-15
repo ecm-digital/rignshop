@@ -64,74 +64,38 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-20 bg-primary-100 relative overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-accent-cream to-primary-100"></div>
-        
-        <div className="container mx-auto px-4 text-center relative z-10">
+      <section className="relative min-h-screen pt-24 overflow-hidden">
+        {/* Video background */}
+        <div className="absolute inset-0">
+          <video
+            src="/hero-video.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+          {/* Dark overlay for readability */}
+          <div className="absolute inset-0 bg-black/40"></div>
+        </div>
+
+        {/* Content overlay */}
+        <div className="relative z-10 container mx-auto px-4 py-20 text-center">
           <div className="max-w-5xl mx-auto">
-            {/* Sale Banner */}
-            <div className="mb-6 inline-flex items-center space-x-2 px-4 py-2 bg-sale-500 text-white rounded-full text-sm font-bold animate-slide-down">
-              <span>🔥</span>
-              <span>UP TO 50% OFF SITEWIDE</span>
-              <span className="text-xs opacity-90">[ THIS WEEK ONLY ]</span>
-            </div>
-            
-            {/* Country detection indicator */}
-            {detectedCountry && (
-              <div className="mb-6 inline-flex items-center space-x-2 px-4 py-2 bg-primary-800/90 backdrop-blur-sm border border-primary-700 text-primary-100 rounded-full text-sm shadow-lg animate-fade-in">
-                <span className="text-primary-200">🌍</span>
-                <span>{t('countryDetected')}: {detectedCountry}</span>
-                <span className="text-xs opacity-75">{t('languageSetAutomatically')}</span>
-              </div>
-            )}
-            
-            <h2 className="text-5xl md:text-7xl font-bold text-primary-900 mb-8 leading-tight font-display">
+            <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight font-display">
               {t('heroTitle')}
               <br />
-              <span className="text-primary-700">{t('heroTitleHighlight')}</span>
+              <span className="text-blue-400">{t('heroTitleHighlight')}</span>
             </h2>
-            <p className="text-xl md:text-2xl text-primary-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
               {t('heroDescription')}
             </p>
-            
-            {/* Enhanced Product visualization */}
-            <div className="mb-12 relative">
-              <div className="relative w-80 h-80 mx-auto">
-                {/* Outer ring with subtle effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-800 via-primary-700 to-primary-600 rounded-full shadow-2xl animate-pulse-slow">
-                  <div className="absolute inset-2 bg-gradient-to-br from-primary-900 to-primary-800 rounded-full"></div>
-                </div>
-                
-                {/* Middle ring with accent */}
-                <div className="absolute inset-8 bg-gradient-to-br from-accent-steel via-accent-navy to-primary-700 rounded-full shadow-lg animate-bounce-slow">
-                  <div className="absolute inset-2 bg-gradient-to-br from-accent-steel to-accent-navy rounded-full"></div>
-                </div>
-                
-                {/* Inner core */}
-                <div className="absolute inset-16 bg-gradient-to-br from-primary-50 to-accent-cream rounded-full shadow-inner animate-pulse">
-                  <div className="absolute inset-2 bg-gradient-to-br from-primary-100 to-white rounded-full"></div>
-                </div>
-                
-                {/* Floating particles */}
-                <div className="absolute top-4 left-4 w-3 h-3 bg-accent-steel rounded-full animate-bounce"></div>
-                <div className="absolute top-8 right-8 w-2 h-2 bg-accent-navy rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
-                <div className="absolute bottom-8 left-8 w-2 h-2 bg-primary-600 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
-              </div>
-            </div>
-            
-            {/* Enhanced CTA Button */}
-            <div className="space-y-4">
-              <button className="group relative bg-primary-900 hover:bg-primary-800 text-primary-50 px-10 py-5 rounded-2xl text-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
-                <span className="relative z-10">{t('orderNowPrice')}</span>
-              </button>
-              
-              {/* Secondary info */}
-              <p className="text-sm text-primary-500 flex items-center justify-center space-x-2">
-                <span className="w-2 h-2 bg-primary-400 rounded-full animate-pulse"></span>
-                <span>Darmowa dostawa • 30 dni na zwrot • 2 lata gwarancji</span>
-              </p>
-            </div>
+            <a
+              href="#order"
+              className="inline-block bg-white/90 hover:bg-white text-primary-900 px-10 py-5 rounded-2xl text-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-white"
+            >
+              {t('orderNowPrice')}
+            </a>
           </div>
         </div>
       </section>
