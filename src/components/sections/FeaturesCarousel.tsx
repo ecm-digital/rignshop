@@ -12,47 +12,55 @@ type Feature = {
 
 export default function FeaturesCarousel() {
   const { t } = useLanguage();
-  const features: Feature[] = useMemo(
+  const baseFeatures: Feature[] = useMemo(
     () => [
-      {
-        icon: "💤",
-        title: t("sleepMonitoring"),
-        description: t("sleepDescription"),
-        gradient: "from-blue-500 to-blue-600",
-      },
-      {
-        icon: "🏃",
-        title: t("activityMonitoring"),
-        description: t("activityDescription"),
-        gradient: "from-green-500 to-green-600",
-      },
-      {
-        icon: "🌡️",
-        title: t("temperatureMonitoring"),
-        description: t("temperatureDescription"),
-        gradient: "from-orange-500 to-orange-600",
-      },
-      {
-        icon: "❤️",
-        title: t("heartRate"),
-        description: t("heartRateDescription"),
-        gradient: "from-red-500 to-red-600",
-      },
+      { icon: "💤", title: t("sleepMonitoring"), description: t("sleepDescription"), gradient: "from-blue-500 to-blue-600" },
+      { icon: "🏃", title: t("activityMonitoring"), description: t("activityDescription"), gradient: "from-green-500 to-green-600" },
+      { icon: "🌡️", title: t("temperatureMonitoring"), description: t("temperatureDescription"), gradient: "from-orange-500 to-orange-600" },
+      { icon: "❤️", title: t("heartRate"), description: t("heartRateDescription"), gradient: "from-red-500 to-red-600" },
     ],
     [t]
   );
 
+  // Tripled list to emulate infinite loop
+  const items = useMemo(() => [...baseFeatures, ...baseFeatures, ...baseFeatures], [baseFeatures]);
+  const n = baseFeatures.length;
+
   const trackRef = useRef<HTMLDivElement | null>(null);
-  const [active, setActive] = useState(0);
-  const activeRef = useRef(0);
-  const hoveringRef = useRef(false);
+  const [active, setActive] = useState(0); // modulo index 0..n-1
+  const [activeFull, setActiveFull] = useState(n); // index in tripled array
+  const activeFullRef = useRef(n);
   const [hovering, setHovering] = useState(false);
+  const hoveringRef = useRef(false);
 
   useEffect(() => {
     hoveringRef.current = hovering;
   }, [hovering]);
 
-  // Detect active slide based on scroll position
+  // Initial center position at middle copy
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const centerIndex = n; // start of middle copy
+    const child = track.children[centerIndex] as HTMLElement | undefined;
+    if (child) {
+      track.scrollTo({ left: child.offsetLeft - 16, behavior: "auto" });
+      setActiveFull(centerIndex);
+      activeFullRef.current = centerIndex;
+      setActive(centerIndex % n);
+    }
+  }, [n]);
+
+  // Helper to scroll to an index inside the tripled list
+  const scrollToIndex = (index: number, smooth = true) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const child = track.children[index] as HTMLElement | undefined;
+    if (!child) return;
+    track.scrollTo({ left: child.offsetLeft - 16, behavior: smooth ? "smooth" : "auto" });
+  };
+
+  // Detect closest slide and keep loop illusion
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -74,26 +82,32 @@ export default function FeaturesCarousel() {
             closestIdx = idx;
           }
         });
-        activeRef.current = closestIdx;
-        setActive(closestIdx);
+        setActiveFull(closestIdx);
+        activeFullRef.current = closestIdx;
+        setActive(closestIdx % n);
+
+        // Recenter to middle copy to simulate infinite list
+        if (closestIdx < n * 0.5) {
+          const target = closestIdx + n;
+          scrollToIndex(target, false);
+          setActiveFull(target);
+          activeFullRef.current = target;
+        } else if (closestIdx > n * 2.5) {
+          const target = closestIdx - n;
+          scrollToIndex(target, false);
+          setActiveFull(target);
+          activeFullRef.current = target;
+        }
       });
     };
 
     track.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => track.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [n]);
 
-  const scrollTo = (index: number) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const child = track.children[index] as HTMLElement | undefined;
-    if (!child) return;
-    track.scrollTo({ left: child.offsetLeft - 16, behavior: "smooth" });
-  };
-
-  const next = () => scrollTo((activeRef.current + 1) % features.length);
-  const prev = () => scrollTo((activeRef.current - 1 + features.length) % features.length);
+  const next = () => scrollToIndex(activeFullRef.current + 1, true);
+  const prev = () => scrollToIndex(activeFullRef.current - 1, true);
 
   // Autoplay with pause on hover/visibility and prefers-reduced-motion
   useEffect(() => {
@@ -102,9 +116,8 @@ export default function FeaturesCarousel() {
 
     let timer: number | undefined;
     const advance = () => {
-      // local function to avoid depending on outer 'next'
-      const index = (activeRef.current + 1) % features.length;
-      scrollTo(index);
+      const idx = activeFullRef.current + 1;
+      scrollToIndex(idx, true);
     };
     const start = () => {
       stop();
@@ -130,7 +143,7 @@ export default function FeaturesCarousel() {
       stop();
       document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, [features.length]);
+  }, [n]);
 
   // Pointer drag to scroll
   useEffect(() => {
@@ -191,73 +204,82 @@ export default function FeaturesCarousel() {
           onMouseEnter={() => setHovering(true)}
           onMouseLeave={() => setHovering(false)}
         >
+          {/* Edge fades (like Oura) */}
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-16 sm:w-24 bg-gradient-to-r from-white to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10" />
+
           {/* Track */}
           <div
             ref={trackRef}
             className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide px-4"
           >
-            {features.map((f, idx) => (
-              <div
-                key={idx}
-                className="snap-center shrink-0 w-[85%] sm:w-[70%] md:w-[55%] lg:w-[40%] xl:w-[32%]"
-              >
+            {items.map((f, idx) => {
+              const visualIndex = idx % n;
+              const isActive = (idx === activeFull);
+              return (
                 <div
-                  className="relative bg-white border border-primary-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full will-change-transform"
-                  onMouseMove={(e) => {
-                    const card = e.currentTarget as HTMLDivElement;
-                    const rect = card.getBoundingClientRect();
-                    const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5..0.5
-                    const y = (e.clientY - rect.top) / rect.height - 0.5;
-                    const rotateX = (-y * 6).toFixed(2);
-                    const rotateY = (x * 6).toFixed(2);
-                    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                  }}
-                  onMouseLeave={(e) => {
-                    const card = e.currentTarget as HTMLDivElement;
-                    card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg)";
-                  }}
+                  key={idx}
+                  className="snap-center shrink-0 w-[88%] sm:w-[72%] md:w-[60%] lg:w-[46%] xl:w-[40%] transition-all duration-500"
+                  style={{ transform: isActive ? "scale(1.02)" : "scale(0.9)", opacity: isActive ? 1 : 0.6 }}
                 >
-                  {/* Icon */}
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${f.gradient} flex items-center justify-center mb-6`}>
-                    <span className="text-2xl">{f.icon}</span>
-                  </div>
-                  {/* Title */}
-                  <h4 className="text-xl font-bold text-primary-900 mb-3">{f.title}</h4>
-                  {/* Description */}
-                  <p className="text-primary-600 leading-relaxed">{f.description}</p>
+                  <div
+                    className="relative bg-white border border-primary-100 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 h-full will-change-transform"
+                    onMouseMove={(e) => {
+                      const card = e.currentTarget as HTMLDivElement;
+                      const rect = card.getBoundingClientRect();
+                      const x = (e.clientX - rect.left) / rect.width - 0.5;
+                      const y = (e.clientY - rect.top) / rect.height - 0.5;
+                      const rotateX = (-y * 6).toFixed(2);
+                      const rotateY = (x * 6).toFixed(2);
+                      card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    }}
+                    onMouseLeave={(e) => {
+                      const card = e.currentTarget as HTMLDivElement;
+                      card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
+                    }}
+                  >
+                    {/* Icon */}
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${f.gradient} flex items-center justify-center mb-6`}>
+                      <span className="text-2xl">{f.icon}</span>
+                    </div>
+                    {/* Title */}
+                    <h4 className="text-xl font-bold text-primary-900 mb-3">{baseFeatures[visualIndex].title}</h4>
+                    {/* Description */}
+                    <p className="text-primary-600 leading-relaxed">{baseFeatures[visualIndex].description}</p>
 
-                  {/* Accent line */}
-                  <div className="mt-6 h-1 bg-primary-100 rounded-full overflow-hidden">
-                    <div className={`h-full bg-gradient-to-r ${f.gradient} w-1/2`} />
+                    {/* Accent line */}
+                    <div className="mt-6 h-1 bg-primary-100 rounded-full overflow-hidden">
+                      <div className={`h-full bg-gradient-to-r ${f.gradient} w-1/2`} />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Arrows */}
           <button
             aria-label="Prev"
             onClick={prev}
-            className="hidden sm:flex items-center justify-center absolute -left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-md border border-primary-100"
+            className="hidden sm:flex items-center justify-center absolute -left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-md border border-primary-100 z-20"
           >
             <span className="text-primary-900">‹</span>
           </button>
           <button
             aria-label="Next"
             onClick={next}
-            className="hidden sm:flex items-center justify-center absolute -right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-md border border-primary-100"
+            className="hidden sm:flex items-center justify-center absolute -right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-md border border-primary-100 z-20"
           >
             <span className="text-primary-900">›</span>
           </button>
 
           {/* Dots */}
           <div className="mt-8 flex items-center justify-center gap-2">
-            {features.map((_, i) => (
+            {baseFeatures.map((_, i) => (
               <button
                 key={i}
                 aria-label={`Go to slide ${i + 1}`}
-                onClick={() => scrollTo(i)}
+                onClick={() => scrollToIndex(n + i, true)}
                 className={`h-2 rounded-full transition-all ${
                   active === i ? "w-6 bg-primary-900" : "w-2 bg-primary-300"
                 }`}

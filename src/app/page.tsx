@@ -57,9 +57,6 @@ export default function Home() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-primary-900 text-xl font-bold">💍</span>
-              </div>
               <h1 className="text-2xl font-bold text-primary-50 font-display">
                 Smart Ring
               </h1>
