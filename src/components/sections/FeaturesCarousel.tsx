@@ -15,10 +15,10 @@ export default function FeaturesCarousel() {
   const { t } = useLanguage();
   const baseFeatures: Feature[] = useMemo(
     () => [
-      { icon: "💤", title: t("sleepMonitoring"), description: t("heroDescription"), gradient: "from-blue-500 to-blue-600", image: "https://source.unsplash.com/featured/1200x900/?sleep,night,calm" },
-      { icon: "🏃", title: t("activityMonitoring"), description: t("activityDescription"), gradient: "from-green-500 to-green-600", image: "https://source.unsplash.com/featured/1200x900/?running,fitness,park" },
-      { icon: "🌡️", title: t("temperatureMonitoring"), description: t("temperatureDescription"), gradient: "from-orange-500 to-orange-600", image: "https://source.unsplash.com/featured/1200x900/?wellness,health,cozy" },
-      { icon: "❤️", title: t("heartRate"), description: t("heartRateDescription"), gradient: "from-red-500 to-red-600", image: "https://source.unsplash.com/featured/1200x900/?camera,hand,ring" },
+      { icon: "💤", title: t("sleepMonitoring"), description: t("sleepDescription"), gradient: "from-blue-500 to-blue-600", image: "/features-sleep.svg" },
+      { icon: "🏃", title: t("activityMonitoring"), description: t("activityDescription"), gradient: "from-green-500 to-green-600", image: "/features-activity.svg" },
+      { icon: "🌡️", title: t("temperatureMonitoring"), description: t("temperatureDescription"), gradient: "from-orange-500 to-orange-600", image: "/features-temperature.svg" },
+      { icon: "❤️", title: t("heartRate"), description: t("heartRateDescription"), gradient: "from-red-500 to-red-600", image: "/features-heart.svg" },
     ],
     [t]
   );
