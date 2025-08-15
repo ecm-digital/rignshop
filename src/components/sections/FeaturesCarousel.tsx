@@ -186,7 +186,7 @@ export default function FeaturesCarousel() {
   }, []);
 
   return (
-    <section id="features" className="py-24 bg-white relative overflow-hidden">
+    <section id="features" className="py-24 bg-white relative overflow-x-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-white" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-10">
@@ -200,7 +200,7 @@ export default function FeaturesCarousel() {
 
         {/* Carousel */}
         <div
-          className="relative"
+          className="relative pb-4"
           onMouseEnter={() => setHovering(true)}
           onMouseLeave={() => setHovering(false)}
         >
@@ -211,7 +211,7 @@ export default function FeaturesCarousel() {
           {/* Track */}
           <div
             ref={trackRef}
-            className="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide px-4"
+            className="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide px-4 py-2"
           >
             {items.map((f, idx) => {
               const visualIndex = idx % n;
@@ -219,18 +219,18 @@ export default function FeaturesCarousel() {
               return (
                 <div
                   key={idx}
-                  className="snap-center shrink-0 w-[92%] sm:w-[86%] md:w-[78%] lg:w-[68%] xl:w-[58%] transition-all duration-500"
-                  style={{ transform: isActive ? "scale(1.035)" : "scale(0.98)", opacity: isActive ? 1 : 0.85 }}
+                  className="snap-center shrink-0 w-[82%] sm:w-[64%] md:w-[50%] lg:w-[42%] xl:w-[36%] transition-all duration-500"
+                  style={{ transform: isActive ? "scale(1.02)" : "scale(0.96)", opacity: isActive ? 1 : 0.9 }}
                 >
                   <div
-                    className="relative bg-white border border-primary-100 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 h-full will-change-transform"
+                    className="relative bg-white border border-primary-100 rounded-3xl p-8 shadow-md hover:shadow-lg transition-all duration-300 h-full min-h-[320px] md:min-h-[360px] will-change-transform"
                     onMouseMove={(e) => {
                       const card = e.currentTarget as HTMLDivElement;
                       const rect = card.getBoundingClientRect();
                       const x = (e.clientX - rect.left) / rect.width - 0.5;
                       const y = (e.clientY - rect.top) / rect.height - 0.5;
-                      const rotateX = (-y * 6).toFixed(2);
-                      const rotateY = (x * 6).toFixed(2);
+                      const rotateX = (-y * 4).toFixed(2);
+                      const rotateY = (x * 4).toFixed(2);
                       card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                     }}
                     onMouseLeave={(e) => {
