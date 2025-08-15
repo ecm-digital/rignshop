@@ -219,24 +219,11 @@ export default function FeaturesCarousel() {
               return (
                 <div
                   key={idx}
-                  className="snap-center shrink-0 w-[82%] sm:w-[64%] md:w-[50%] lg:w-[42%] xl:w-[36%] transition-all duration-500"
+                  className="snap-center shrink-0 w-[72%] sm:w-[56%] md:w-[44%] lg:w-[36%] xl:w-[30%] transition-all duration-500"
                   style={{ transform: isActive ? "scale(1.02)" : "scale(0.96)", opacity: isActive ? 1 : 0.9 }}
                 >
                   <div
-                    className="relative bg-white border border-primary-100 rounded-3xl p-8 shadow-md hover:shadow-lg transition-all duration-300 h-full min-h-[320px] md:min-h-[360px] will-change-transform"
-                    onMouseMove={(e) => {
-                      const card = e.currentTarget as HTMLDivElement;
-                      const rect = card.getBoundingClientRect();
-                      const x = (e.clientX - rect.left) / rect.width - 0.5;
-                      const y = (e.clientY - rect.top) / rect.height - 0.5;
-                      const rotateX = (-y * 4).toFixed(2);
-                      const rotateY = (x * 4).toFixed(2);
-                      card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                    }}
-                    onMouseLeave={(e) => {
-                      const card = e.currentTarget as HTMLDivElement;
-                      card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
-                    }}
+                    className="relative bg-white border border-primary-100 rounded-3xl p-8 shadow-md hover:shadow-lg transition-all duration-300 h-full min-h-[340px] md:min-h-[380px]"
                   >
                     {/* Icon */}
                     <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${f.gradient} flex items-center justify-center mb-6`}>
