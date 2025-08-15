@@ -1,13 +1,14 @@
 'use client';
 
 import { useLanguage } from '@/hooks/useLanguage';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import LanguageSelector from '@/components/LanguageSelector';
 import ProductGallery from '@/components/ProductGallery';
 
 export default function Home() {
   const { t } = useLanguage();
   const [detectedCountry, setDetectedCountry] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     // Get auto-detected country from localStorage
@@ -15,6 +16,36 @@ export default function Home() {
     if (country) {
       setDetectedCountry(country);
     }
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Ensure correct attributes for mobile autoplay
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('webkit-playsinline', 'true');
+
+    const tryPlay = () => {
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise.catch(() => {
+          // Ignore - some browsers require user interaction
+        });
+      }
+    };
+
+    // Attempt to start playback
+    tryPlay();
+
+    // Resume after tab becomes visible
+    const onVisibility = () => {
+      if (!document.hidden) tryPlay();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
   }, []);
 
   return (
@@ -68,12 +99,29 @@ export default function Home() {
         {/* Video background */}
         <div className="absolute inset-0">
           <video
+            ref={videoRef}
             src="/hero-video.mp4"
             autoPlay
             loop
             muted
             playsInline
+            preload="auto"
+            poster="/video-poster.svg"
             className="w-full h-full object-cover"
+            onCanPlay={() => {
+              // Attempt to play again when ready
+              const v = videoRef.current;
+              if (v && v.paused) {
+                v.play().catch(() => {});
+              }
+            }}
+            onTouchStart={() => {
+              const v = videoRef.current;
+              if (v) {
+                v.muted = true;
+                v.play().catch(() => {});
+              }
+            }}
           />
           {/* Dark overlay for readability */}
           <div className="absolute inset-0 bg-black/40"></div>
