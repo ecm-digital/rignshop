@@ -211,7 +211,7 @@ export default function FeaturesCarousel() {
           {/* Track */}
           <div
             ref={trackRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide px-4"
+            className="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide px-4"
           >
             {items.map((f, idx) => {
               const visualIndex = idx % n;
@@ -219,11 +219,11 @@ export default function FeaturesCarousel() {
               return (
                 <div
                   key={idx}
-                  className="snap-center shrink-0 w-[88%] sm:w-[72%] md:w-[60%] lg:w-[46%] xl:w-[40%] transition-all duration-500"
-                  style={{ transform: isActive ? "scale(1.02)" : "scale(0.9)", opacity: isActive ? 1 : 0.6 }}
+                  className="snap-center shrink-0 w-[92%] sm:w-[86%] md:w-[78%] lg:w-[68%] xl:w-[58%] transition-all duration-500"
+                  style={{ transform: isActive ? "scale(1.035)" : "scale(0.98)", opacity: isActive ? 1 : 0.85 }}
                 >
                   <div
-                    className="relative bg-white border border-primary-100 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 h-full will-change-transform"
+                    className="relative bg-white border border-primary-100 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 h-full will-change-transform"
                     onMouseMove={(e) => {
                       const card = e.currentTarget as HTMLDivElement;
                       const rect = card.getBoundingClientRect();
