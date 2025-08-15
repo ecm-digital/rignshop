@@ -107,7 +107,7 @@ export default function Home() {
             playsInline
             preload="auto"
             poster="/video-poster.svg"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top scale-[1.06]"
             onCanPlay={() => {
               // Attempt to play again when ready
               const v = videoRef.current;
@@ -125,6 +125,8 @@ export default function Home() {
           />
           {/* Dark overlay for readability */}
           <div className="absolute inset-0 bg-black/40"></div>
+          {/* Bottom gradient to hide watermark */}
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
         </div>
 
         {/* Content overlay */}
