@@ -8,16 +8,17 @@ type Feature = {
   title: string;
   description: string;
   gradient: string;
+  image: string;
 };
 
 export default function FeaturesCarousel() {
   const { t } = useLanguage();
   const baseFeatures: Feature[] = useMemo(
     () => [
-      { icon: "💤", title: t("sleepMonitoring"), description: t("sleepDescription"), gradient: "from-blue-500 to-blue-600" },
-      { icon: "🏃", title: t("activityMonitoring"), description: t("activityDescription"), gradient: "from-green-500 to-green-600" },
-      { icon: "🌡️", title: t("temperatureMonitoring"), description: t("temperatureDescription"), gradient: "from-orange-500 to-orange-600" },
-      { icon: "❤️", title: t("heartRate"), description: t("heartRateDescription"), gradient: "from-red-500 to-red-600" },
+      { icon: "💤", title: t("sleepMonitoring"), description: t("heroDescription"), gradient: "from-blue-500 to-blue-600", image: "https://source.unsplash.com/featured/1200x900/?sleep,night,calm" },
+      { icon: "🏃", title: t("activityMonitoring"), description: t("activityDescription"), gradient: "from-green-500 to-green-600", image: "https://source.unsplash.com/featured/1200x900/?running,fitness,park" },
+      { icon: "🌡️", title: t("temperatureMonitoring"), description: t("temperatureDescription"), gradient: "from-orange-500 to-orange-600", image: "https://source.unsplash.com/featured/1200x900/?wellness,health,cozy" },
+      { icon: "❤️", title: t("heartRate"), description: t("heartRateDescription"), gradient: "from-red-500 to-red-600", image: "https://source.unsplash.com/featured/1200x900/?camera,hand,ring" },
     ],
     [t]
   );
@@ -222,21 +223,26 @@ export default function FeaturesCarousel() {
                   className="snap-center shrink-0 w-[72%] sm:w-[56%] md:w-[44%] lg:w-[36%] xl:w-[30%] transition-all duration-500"
                   style={{ transform: isActive ? "scale(1.02)" : "scale(0.96)", opacity: isActive ? 1 : 0.9 }}
                 >
-                  <div
-                    className="relative bg-white border border-primary-100 rounded-3xl p-8 shadow-md hover:shadow-lg transition-all duration-300 h-full min-h-[340px] md:min-h-[380px]"
-                  >
-                    {/* Icon */}
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${f.gradient} flex items-center justify-center mb-6`}>
-                      <span className="text-2xl">{f.icon}</span>
+                  <div className="relative rounded-3xl overflow-hidden shadow-lg h-full min-h-[420px] md:min-h-[480px]">
+                    {/* Background image */}
+                    <div
+                      className="absolute inset-0 bg-center bg-cover"
+                      style={{ backgroundImage: `url(${f.image})` }}
+                    />
+                    {/* Top overlays */}
+                    <div className="absolute top-4 left-4 flex items-center gap-2">
+                      <div className="backdrop-blur-sm bg-black/35 text-white text-xs md:text-sm px-3 py-2 rounded-full inline-flex items-center gap-2">
+                        <span className="text-base">{f.icon}</span>
+                        <span className="font-medium">{baseFeatures[visualIndex].title}</span>
+                      </div>
                     </div>
-                    {/* Title */}
-                    <h4 className="text-xl font-bold text-primary-900 mb-3">{baseFeatures[visualIndex].title}</h4>
-                    {/* Description */}
-                    <p className="text-primary-600 leading-relaxed">{baseFeatures[visualIndex].description}</p>
-
-                    {/* Accent line */}
-                    <div className="mt-6 h-1 bg-primary-100 rounded-full overflow-hidden">
-                      <div className={`h-full bg-gradient-to-r ${f.gradient} w-1/2`} />
+                    <button aria-label="More" className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-primary-900 shadow flex items-center justify-center">+</button>
+                    {/* Bottom gradient and headline */}
+                    <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 via-black/30 to-transparent -z-10" />
+                      <h4 className="text-white text-2xl md:text-3xl font-semibold leading-tight drop-shadow-md">
+                        {baseFeatures[visualIndex].description}
+                      </h4>
                     </div>
                   </div>
                 </div>
@@ -261,7 +267,7 @@ export default function FeaturesCarousel() {
           </button>
 
           {/* Dots */}
-          <div className="mt-8 flex items-center justify-center gap-2">
+          <div className="mt-10 flex items-center justify-center gap-2">
             {baseFeatures.map((_, i) => (
               <button
                 key={i}
