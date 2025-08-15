@@ -4,6 +4,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useState, useEffect, useRef } from 'react';
 import LanguageSelector from '@/components/LanguageSelector';
 import ProductGallery from '@/components/ProductGallery';
+import FeaturesCarousel from '@/components/sections/FeaturesCarousel';
 
 export default function Home() {
   const { t } = useLanguage();
@@ -150,84 +151,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features */}
-      <section id="features" className="py-24 bg-white relative">
-        {/* Background pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-white"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6 font-display">
-              {t('featuresTitle')}
-            </h3>
-            <p className="text-xl text-primary-600 max-w-2xl mx-auto">
-              Odkryj zaawansowane technologie monitorowania zdrowia w jednym eleganckim urządzeniu
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Sleep Monitoring */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-200/20 to-primary-300/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              <div className="relative bg-white border border-primary-200 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group-hover:border-primary-300">
-                <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">💤</div>
-                <h4 className="text-xl font-bold mb-3 text-primary-900 group-hover:text-primary-700 transition-colors">
-                  {t('sleepMonitoring')}
-                </h4>
-                <p className="text-primary-600 leading-relaxed">{t('sleepDescription')}</p>
-                
-                {/* Hover effect line */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-primary-300 rounded-full group-hover:w-1/2 transition-all duration-500"></div>
-              </div>
-            </div>
-
-            {/* Physical Activity */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent-steel/20 to-accent-navy/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              <div className="relative bg-white border border-primary-200 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group-hover:border-accent-steel">
-                <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">🏃</div>
-                <h4 className="text-xl font-bold mb-3 text-primary-900 group-hover:text-accent-steel transition-colors">
-                  {t('activityMonitoring')}
-                </h4>
-                <p className="text-primary-600 leading-relaxed">{t('activityDescription')}</p>
-                
-                {/* Hover effect line */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-accent-steel to-accent-navy rounded-full group-hover:w-1/2 transition-all duration-500"></div>
-              </div>
-            </div>
-
-            {/* Body Temperature */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent-cream/20 to-accent-beige/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              <div className="relative bg-white border border-primary-200 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group-hover:border-accent-cream">
-                <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">🌡️</div>
-                <h4 className="text-xl font-bold mb-3 text-primary-900 group-hover:text-primary-700 transition-colors">
-                  {t('temperatureMonitoring')}
-                </h4>
-                <p className="text-primary-600 leading-relaxed">{t('temperatureDescription')}</p>
-                
-                {/* Hover effect line */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-accent-cream to-accent-beige rounded-full group-hover:w-1/2 transition-all duration-500"></div>
-              </div>
-            </div>
-
-            {/* Heart Rate */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-400/20 to-primary-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              <div className="relative bg-white border border-primary-200 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group-hover:border-primary-400">
-                <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">❤️</div>
-                <h4 className="text-xl font-bold mb-3 text-primary-900 group-hover:text-primary-600 transition-colors">
-                  {t('heartRate')}
-                </h4>
-                <p className="text-primary-600 leading-relaxed">{t('heartRateDescription')}</p>
-                
-                {/* Hover effect line */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-primary-400 to-primary-500 rounded-full group-hover:w-1/2 transition-all duration-500"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Features (Carousel) */}
+      <FeaturesCarousel />
 
       {/* Product Gallery */}
       <ProductGallery />
