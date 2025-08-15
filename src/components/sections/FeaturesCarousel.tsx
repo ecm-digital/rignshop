@@ -44,7 +44,15 @@ export default function FeaturesCarousel() {
 
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
+  const activeRef = useRef(0);
+  const hoveringRef = useRef(false);
+  const [hovering, setHovering] = useState(false);
 
+  useEffect(() => {
+    hoveringRef.current = hovering;
+  }, [hovering]);
+
+  // Detect active slide based on scroll position
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -66,6 +74,7 @@ export default function FeaturesCarousel() {
             closestIdx = idx;
           }
         });
+        activeRef.current = closestIdx;
         setActive(closestIdx);
       });
     };
@@ -83,8 +92,85 @@ export default function FeaturesCarousel() {
     track.scrollTo({ left: child.offsetLeft - 16, behavior: "smooth" });
   };
 
-  const next = () => scrollTo(Math.min(active + 1, features.length - 1));
-  const prev = () => scrollTo(Math.max(active - 1, 0));
+  const next = () => scrollTo((activeRef.current + 1) % features.length);
+  const prev = () => scrollTo((activeRef.current - 1 + features.length) % features.length);
+
+  // Autoplay with pause on hover/visibility and prefers-reduced-motion
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (media.matches) return; // respect reduced motion
+
+    let timer: number | undefined;
+    const advance = () => {
+      // local function to avoid depending on outer 'next'
+      const index = (activeRef.current + 1) % features.length;
+      scrollTo(index);
+    };
+    const start = () => {
+      stop();
+      timer = window.setInterval(() => {
+        if (document.hidden || hoveringRef.current) return;
+        advance();
+      }, 3500);
+    };
+    const stop = () => {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = undefined;
+      }
+    };
+
+    start();
+    const onVisibility = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, [features.length]);
+
+  // Pointer drag to scroll
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    let isDown = false;
+    let startX = 0;
+    let startScroll = 0;
+
+    const onDown = (e: PointerEvent) => {
+      isDown = true;
+      startX = e.clientX;
+      startScroll = track.scrollLeft;
+      track.setPointerCapture(e.pointerId);
+      track.style.cursor = "grabbing";
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!isDown) return;
+      const delta = e.clientX - startX;
+      track.scrollLeft = startScroll - delta;
+    };
+    const onUp = (e: PointerEvent) => {
+      isDown = false;
+      try { track.releasePointerCapture(e.pointerId); } catch {}
+      track.style.cursor = "grab";
+    };
+
+    track.style.cursor = "grab";
+    track.addEventListener("pointerdown", onDown);
+    track.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+
+    return () => {
+      track.removeEventListener("pointerdown", onDown);
+      track.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      track.style.cursor = "";
+    };
+  }, []);
 
   return (
     <section id="features" className="py-24 bg-white relative overflow-hidden">
@@ -100,7 +186,11 @@ export default function FeaturesCarousel() {
         </div>
 
         {/* Carousel */}
-        <div className="relative">
+        <div
+          className="relative"
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+        >
           {/* Track */}
           <div
             ref={trackRef}
@@ -111,7 +201,22 @@ export default function FeaturesCarousel() {
                 key={idx}
                 className="snap-center shrink-0 w-[85%] sm:w-[70%] md:w-[55%] lg:w-[40%] xl:w-[32%]"
               >
-                <div className="relative bg-white border border-primary-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                <div
+                  className="relative bg-white border border-primary-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full will-change-transform"
+                  onMouseMove={(e) => {
+                    const card = e.currentTarget as HTMLDivElement;
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5..0.5
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    const rotateX = (-y * 6).toFixed(2);
+                    const rotateY = (x * 6).toFixed(2);
+                    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                  }}
+                  onMouseLeave={(e) => {
+                    const card = e.currentTarget as HTMLDivElement;
+                    card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg)";
+                  }}
+                >
                   {/* Icon */}
                   <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${f.gradient} flex items-center justify-center mb-6`}>
                     <span className="text-2xl">{f.icon}</span>
