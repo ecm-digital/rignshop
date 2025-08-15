@@ -16,7 +16,7 @@ export default function FeaturesCarousel() {
   const baseFeatures: Feature[] = useMemo(
     () => [
       { icon: "💤", title: t("sleepMonitoring"), description: t("sleepDescription"), gradient: "from-blue-500 to-blue-600", image: "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1600&q=80" },
-      { icon: "🏃", title: t("activityMonitoring"), description: t("activityDescription"), gradient: "from-green-500 to-green-600", image: "https://images.unsplash.com/photo-1526401281623-4b2d1dbe0c83?auto=format&fit=crop&w=1600&q=80" },
+      { icon: "🏃", title: t("activityMonitoring"), description: t("activityDescription"), gradient: "from-green-500 to-green-600", image: "https://source.unsplash.com/1600x900/?running,fitness,park" },
       { icon: "🌡️", title: t("temperatureMonitoring"), description: t("temperatureDescription"), gradient: "from-orange-500 to-orange-600", image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80" },
       { icon: "❤️", title: t("heartRate"), description: t("heartRateDescription"), gradient: "from-red-500 to-red-600", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80" },
     ],
@@ -33,6 +33,7 @@ export default function FeaturesCarousel() {
   const activeFullRef = useRef(n);
   const [hovering, setHovering] = useState(false);
   const hoveringRef = useRef(false);
+  const [expanded, setExpanded] = useState<number | null>(null); // full index of expanded card
 
   useEffect(() => {
     hoveringRef.current = hovering;
@@ -217,13 +218,15 @@ export default function FeaturesCarousel() {
             {items.map((f, idx) => {
               const visualIndex = idx % n;
               const isActive = (idx === activeFull);
+              const isExpanded = expanded === idx;
+              const scale = isExpanded ? 1.06 : (isActive ? 1.02 : 0.96);
               return (
                 <div
                   key={idx}
                   className="snap-center shrink-0 w-[72%] sm:w-[56%] md:w-[44%] lg:w-[36%] xl:w-[30%] transition-all duration-500"
-                  style={{ transform: isActive ? "scale(1.02)" : "scale(0.96)", opacity: isActive ? 1 : 0.9 }}
+                  style={{ transform: `scale(${scale})`, opacity: isActive || isExpanded ? 1 : 0.9 }}
                 >
-                  <div className="relative rounded-3xl overflow-hidden shadow-lg h-full min-h-[420px] md:min-h-[480px]">
+                  <div className={`relative rounded-3xl overflow-hidden shadow-lg h-full ${isExpanded ? 'min-h-[500px] md:min-h-[560px]' : 'min-h-[420px] md:min-h-[480px]'}`}>
                     {/* Background image */}
                     <div
                       className="absolute inset-0 bg-center bg-cover"
@@ -236,13 +239,31 @@ export default function FeaturesCarousel() {
                         <span className="font-medium">{baseFeatures[visualIndex].title}</span>
                       </div>
                     </div>
-                    <button aria-label="More" className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-primary-900 shadow flex items-center justify-center">+</button>
+                    <button
+                      aria-label="More"
+                      className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-primary-900 shadow flex items-center justify-center"
+                      onClick={() => {
+                        const nextIdx = expanded === idx ? null : idx;
+                        setExpanded(nextIdx);
+                        if (nextIdx !== null) {
+                          scrollToIndex(nextIdx, true);
+                        }
+                      }}
+                    >
+                      {isExpanded ? '−' : '+'}
+                    </button>
                     {/* Bottom gradient and headline */}
                     <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
                       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 via-black/30 to-transparent -z-10" />
-                      <h4 className="text-white text-2xl md:text-3xl font-semibold leading-tight drop-shadow-md">
-                        {baseFeatures[visualIndex].description}
-                      </h4>
+                      {isExpanded ? (
+                        <p className="text-white text-lg md:text-xl leading-relaxed drop-shadow-md">
+                          {baseFeatures[visualIndex].description}
+                        </p>
+                      ) : (
+                        <h4 className="text-white text-2xl md:text-3xl font-semibold leading-tight drop-shadow-md">
+                          {baseFeatures[visualIndex].title}
+                        </h4>
+                      )}
                     </div>
                   </div>
                 </div>
