@@ -15,10 +15,10 @@ export default function FeaturesCarousel() {
   const { t } = useLanguage();
   const baseFeatures: Feature[] = useMemo(
     () => [
-      { icon: "💤", title: t("sleepMonitoring"), description: t("sleepDescription"), gradient: "from-blue-500 to-blue-600", image: "/features-sleep.svg" },
-      { icon: "🏃", title: t("activityMonitoring"), description: t("activityDescription"), gradient: "from-green-500 to-green-600", image: "/features-activity.svg" },
-      { icon: "🌡️", title: t("temperatureMonitoring"), description: t("temperatureDescription"), gradient: "from-orange-500 to-orange-600", image: "/features-temperature.svg" },
-      { icon: "❤️", title: t("heartRate"), description: t("heartRateDescription"), gradient: "from-red-500 to-red-600", image: "/features-heart.svg" },
+      { icon: "💤", title: t("sleepMonitoring"), description: t("sleepDescription"), gradient: "from-blue-500 to-blue-600", image: "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1600&q=80" },
+      { icon: "🏃", title: t("activityMonitoring"), description: t("activityDescription"), gradient: "from-green-500 to-green-600", image: "https://images.unsplash.com/photo-1526401281623-4b2d1dbe0c83?auto=format&fit=crop&w=1600&q=80" },
+      { icon: "🌡️", title: t("temperatureMonitoring"), description: t("temperatureDescription"), gradient: "from-orange-500 to-orange-600", image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80" },
+      { icon: "❤️", title: t("heartRate"), description: t("heartRateDescription"), gradient: "from-red-500 to-red-600", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80" },
     ],
     [t]
   );
