@@ -241,7 +241,8 @@ export default function FeaturesCarousel() {
                     </div>
                     <button
                       aria-label="More"
-                      className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-primary-900 shadow flex items-center justify-center"
+                      className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-primary-900 shadow flex items-center justify-center z-20"
+                      onPointerDown={(e) => { e.stopPropagation(); }}
                       onClick={() => {
                         const nextIdx = expanded === idx ? null : idx;
                         setExpanded(nextIdx);
