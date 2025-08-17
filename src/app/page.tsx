@@ -14,8 +14,7 @@ export default function Home() {
   const [priceText, setPriceText] = useState<string | null>(null);
   const [variantId, setVariantId] = useState<string | null>(null);
   const [productUrl, setProductUrl] = useState<string | null>(null);
-  const FALLBACK_PRODUCT_URL = (process.env.NEXT_PUBLIC_SHOPIFY_PRODUCT_URL || null);
-  const PUBLIC_SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || null;
+  const [ctaUrl, setCtaUrl] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -57,6 +56,14 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    // Runtime config (CTA URL from env)
+    fetch('/api/config')
+      .then((r) => r.json())
+      .then((json) => {
+        if (json?.ctaUrl) setCtaUrl(json.ctaUrl);
+      })
+      .catch(() => {});
+    // Product details for price and backup URL
     fetch('/api/products')
       .then((r) => r.json())
       .then((json) => {
@@ -73,7 +80,7 @@ export default function Home() {
   }, []);
 
   const goToProduct = () => {
-    const candidateRaw = FALLBACK_PRODUCT_URL || productUrl;
+    const candidateRaw = ctaUrl || productUrl;
     const candidate = typeof candidateRaw === 'string' ? candidateRaw.trim() : candidateRaw;
     if (!candidate) return;
     // If candidate is already a full URL, use it
@@ -82,32 +89,10 @@ export default function Home() {
       window.location.href = u.toString();
       return;
     } catch {}
-    // Otherwise, try to build a full URL from domain + candidate
-    if (!PUBLIC_SHOPIFY_DOMAIN) return;
-    const domain = PUBLIC_SHOPIFY_DOMAIN.replace(/^https?:\/\//, '').replace(/\/$/, '');
-    const path = candidate.startsWith('/')
-      ? candidate
-      : candidate.startsWith('products/')
-        ? `/${candidate}`
-        : `/products/${candidate}`;
-    window.location.href = `https://${domain}${path}`;
+    // If not a full URL, do nothing (ctaUrl should already be fully formed)
   };
 
-  const ctaHref = (() => {
-    const raw = typeof FALLBACK_PRODUCT_URL === 'string' ? FALLBACK_PRODUCT_URL.trim() : null;
-    if (raw) {
-      try {
-        const u = new URL(raw);
-        return u.toString();
-      } catch {}
-      if (PUBLIC_SHOPIFY_DOMAIN) {
-        const domain = PUBLIC_SHOPIFY_DOMAIN.replace(/^https?:\/\//, '').replace(/\/$/, '');
-        const path = raw.startsWith('/') ? raw : raw.startsWith('products/') ? `/${raw}` : `/products/${raw}`;
-        return `https://${domain}${path}`;
-      }
-    }
-    return null;
-  })();
+  const ctaHref = ctaUrl || productUrl || undefined;
 
   return (
     <main className="min-h-screen bg-primary-50">
