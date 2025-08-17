@@ -34,8 +34,6 @@ export default function Home() {
   const [detectedCountry, setDetectedCountry] = useState<string | null>(null);
   const [priceText, setPriceText] = useState<string | null>(null);
   const [variantId, setVariantId] = useState<string | null>(null);
-  const [productUrl, setProductUrl] = useState<string | null>(null);
-  const [ctaUrl, setCtaUrl] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -77,21 +75,13 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // Runtime config (CTA URL from env)
-    fetch('/api/config')
-      .then((r) => r.json())
-      .then((json) => {
-        if (json?.ctaUrl) setCtaUrl(json.ctaUrl);
-      })
-      .catch(() => {});
-    // Product details for price and backup URL
+    // Product details for price only
     fetch('/api/products')
       .then((r) => r.json())
       .then((json) => {
         const p = json?.product;
         if (!p) return;
         setVariantId(p.variantId ?? null);
-        if (p.productUrl) setProductUrl(p.productUrl as string);
         if (p.price && p.currency) {
           const formatter = new Intl.NumberFormat(undefined, { style: 'currency', currency: p.currency });
           setPriceText(formatter.format(parseFloat(p.price)));
@@ -99,21 +89,7 @@ export default function Home() {
       })
       .catch(() => {});
   }, []);
-
-  const goToProduct = () => {
-    const candidateRaw = ctaUrl || productUrl;
-    const candidate = typeof candidateRaw === 'string' ? candidateRaw.trim() : candidateRaw;
-    if (!candidate) return;
-    // If candidate is already a full URL, use it
-    try {
-      const u = new URL(candidate);
-      window.location.href = u.toString();
-      return;
-    } catch {}
-    // If not a full URL, do nothing (ctaUrl should already be fully formed)
-  };
-
-  const ctaHref = ctaUrl || productUrl || undefined;
+  const ctaHref = buildTimeHref;
 
   return (
     <main className="min-h-screen bg-primary-50">
@@ -205,14 +181,7 @@ export default function Home() {
               {t('heroDescription')}
             </p>
             <a
-              href={buildTimeHref || ctaHref || productUrl ? (buildTimeHref || ctaHref || productUrl) : '/go/product'}
-              onClick={(e) => {
-                if (!(buildTimeHref || ctaHref || productUrl)) {
-                  // fallback to server redirect route
-                  e.preventDefault();
-                  window.location.href = '/go/product';
-                }
-              }}
+              href={ctaHref}
               className="inline-block bg-white/90 hover:bg-white text-primary-900 px-10 py-5 rounded-2xl text-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-white"
             >
               {priceText ? `${t('orderNow')} • ${priceText}` : t('orderNowPrice')}
@@ -283,7 +252,7 @@ export default function Home() {
                 </ul>
                 
                 {/* CTA Button */}
-                <a href={buildTimeHref || ctaHref || productUrl ? (buildTimeHref || ctaHref || productUrl) : '/go/product'} onClick={(e) => { if (!(buildTimeHref || ctaHref || productUrl)) { e.preventDefault(); window.location.href = '/go/product'; } }} className="w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
+                <a href={ctaHref} className="w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
                   <span className="relative z-10">{priceText ? `${t('orderNow')} • ${priceText}` : t('orderNow')}</span>
                 </a>
                 
