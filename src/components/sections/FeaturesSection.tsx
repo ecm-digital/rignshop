@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const features = [
   {
@@ -34,6 +35,7 @@ const features = [
 export default function FeaturesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t, language } = useLanguage();
 
   return (
     <section id="features-section" className="py-20 bg-white" ref={ref}>
@@ -45,13 +47,10 @@ export default function FeaturesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Wszystko, czego potrzebujesz
-            <br />
-            <span className="text-blue-600">w jednym pierścieniu</span>
+            {t('featuresTitle')}
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Smart Ring łączy w sobie zaawansowane technologie monitorowania zdrowia 
-            w eleganckim, dyskretnym urządzeniu, które nosisz 24/7.
+            {t('featuresIntro')}
           </p>
         </motion.div>
 
@@ -95,10 +94,10 @@ export default function FeaturesSection() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
         >
           {[
-            { number: '7', label: 'dni pracy baterii', suffix: '' },
-            { number: '99', label: 'precyzja pomiarów', suffix: '%' },
-            { number: '24', label: 'godziny monitorowania', suffix: '/7' },
-            { number: '50', label: 'metrów wodoodporność', suffix: 'm' }
+            { number: '7', label: t('batteryLife'), suffix: '' },
+            { number: '99', label: t('measurementAccuracy'), suffix: '%' },
+            { number: '24', label: t('monitoring'), suffix: '/7' },
+            { number: '50', label: t('waterResistance'), suffix: 'm' }
           ].map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
