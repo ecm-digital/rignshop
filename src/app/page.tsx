@@ -205,8 +205,14 @@ export default function Home() {
               {t('heroDescription')}
             </p>
             <a
-              href={buildTimeHref || ctaHref || productUrl || undefined}
-              onClick={(e) => { if (!ctaHref) { e.preventDefault(); goToProduct(); } }}
+              href={buildTimeHref || ctaHref || productUrl ? (buildTimeHref || ctaHref || productUrl) : '/go/product'}
+              onClick={(e) => {
+                if (!(buildTimeHref || ctaHref || productUrl)) {
+                  // fallback to server redirect route
+                  e.preventDefault();
+                  window.location.href = '/go/product';
+                }
+              }}
               className="inline-block bg-white/90 hover:bg-white text-primary-900 px-10 py-5 rounded-2xl text-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-white"
             >
               {priceText ? `${t('orderNow')} • ${priceText}` : t('orderNowPrice')}
@@ -277,7 +283,7 @@ export default function Home() {
                 </ul>
                 
                 {/* CTA Button */}
-                <a href={buildTimeHref || ctaHref || productUrl || undefined} onClick={(e) => { if (!ctaHref) { e.preventDefault(); goToProduct(); } }} className="w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
+                <a href={buildTimeHref || ctaHref || productUrl ? (buildTimeHref || ctaHref || productUrl) : '/go/product'} onClick={(e) => { if (!(buildTimeHref || ctaHref || productUrl)) { e.preventDefault(); window.location.href = '/go/product'; } }} className="w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
                   <span className="relative z-10">{priceText ? `${t('orderNow')} • ${priceText}` : t('orderNow')}</span>
                 </a>
                 
