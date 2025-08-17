@@ -34,6 +34,7 @@ export default function Home() {
   const [detectedCountry, setDetectedCountry] = useState<string | null>(null);
   const [priceText, setPriceText] = useState<string | null>(null);
   const [variantId, setVariantId] = useState<string | null>(null);
+  const [runtimeProductUrl, setRuntimeProductUrl] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -82,6 +83,7 @@ export default function Home() {
         const p = json?.product;
         if (!p) return;
         setVariantId(p.variantId ?? null);
+        if (p.productUrl) setRuntimeProductUrl(p.productUrl as string);
         if (p.price && p.currency) {
           const formatter = new Intl.NumberFormat(undefined, { style: 'currency', currency: p.currency });
           setPriceText(formatter.format(parseFloat(p.price)));
@@ -89,7 +91,7 @@ export default function Home() {
       })
       .catch(() => {});
   }, []);
-  const ctaHref = buildTimeHref;
+  const ctaHref = runtimeProductUrl || buildTimeHref;
 
   return (
     <main className="min-h-screen bg-primary-50">
