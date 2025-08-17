@@ -72,7 +72,7 @@ export default function Home() {
   }, []);
 
   const goToProduct = () => {
-    const url = productUrl || FALLBACK_PRODUCT_URL;
+    const url = FALLBACK_PRODUCT_URL || productUrl;
     if (url) window.location.href = url as string;
   };
 
