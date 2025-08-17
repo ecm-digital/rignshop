@@ -10,7 +10,12 @@ import FAQSection from '@/components/sections/FAQSection';
 
 export default function Home() {
   // Build-time fallback for href to ensure SSR has a valid absolute link
-  const BUILD_PRODUCT_URL = (process.env.NEXT_PUBLIC_SHOPIFY_PRODUCT_URL || '').trim().replace(/^@+/, '');
+  const BUILD_PRODUCT_URL = (
+    process.env.NEXT_PUBLIC_SHOPIFY_PRODUCT_URL ||
+    // Fallback for common typo in env var name
+    process.env.NEXT_PUBLIC_SHOPIFY_PRODUCT_UR ||
+    ''
+  ).trim().replace(/^@+/, '');
   const BUILD_STORE_DOMAIN = (process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || '').trim().replace(/^@+/, '');
   const buildTimeHref = (() => {
     if (BUILD_PRODUCT_URL) {
