@@ -40,7 +40,7 @@ export async function GET() {
     if (!node) return NextResponse.json({ product: null });
 
     const variant = node.variants?.edges?.[0]?.node;
-    const domain = process.env.SHOPIFY_STORE_DOMAIN;
+    const domain = process.env.SHOPIFY_STORE_DOMAIN || process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
     const productUrl = domain ? `https://${domain}/products/${node.handle}` : null;
     return NextResponse.json({
       product: {

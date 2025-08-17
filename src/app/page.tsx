@@ -91,7 +91,18 @@ export default function Home() {
       })
       .catch(() => {});
   }, []);
-  const ctaHref = runtimeProductUrl || buildTimeHref;
+  const ctaHref = (() => {
+    if (runtimeProductUrl) {
+      try { return new URL(runtimeProductUrl).toString(); } catch {}
+      if (BUILD_STORE_DOMAIN) {
+        const domain = BUILD_STORE_DOMAIN.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        const raw = runtimeProductUrl.trim();
+        const path = raw.startsWith('/') ? raw : raw.startsWith('products/') ? `/${raw}` : `/products/${raw}`;
+        return `https://${domain}${path}`;
+      }
+    }
+    return buildTimeHref;
+  })();
 
   return (
     <main className="min-h-screen bg-primary-50">
