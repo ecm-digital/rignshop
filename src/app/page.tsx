@@ -14,7 +14,7 @@ export default function Home() {
   const [priceText, setPriceText] = useState<string | null>(null);
   const [variantId, setVariantId] = useState<string | null>(null);
   const [productUrl, setProductUrl] = useState<string | null>(null);
-  const FALLBACK_PRODUCT_URL = process.env.NEXT_PUBLIC_SHOPIFY_PRODUCT_URL || null;
+  const FALLBACK_PRODUCT_URL = (process.env.NEXT_PUBLIC_SHOPIFY_PRODUCT_URL || null);
   const PUBLIC_SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || null;
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -73,7 +73,8 @@ export default function Home() {
   }, []);
 
   const goToProduct = () => {
-    const candidate = FALLBACK_PRODUCT_URL || productUrl;
+    const candidateRaw = FALLBACK_PRODUCT_URL || productUrl;
+    const candidate = typeof candidateRaw === 'string' ? candidateRaw.trim() : candidateRaw;
     if (!candidate) return;
     // If candidate is already a full URL, use it
     try {
@@ -91,6 +92,22 @@ export default function Home() {
         : `/products/${candidate}`;
     window.location.href = `https://${domain}${path}`;
   };
+
+  const ctaHref = (() => {
+    const raw = typeof FALLBACK_PRODUCT_URL === 'string' ? FALLBACK_PRODUCT_URL.trim() : null;
+    if (raw) {
+      try {
+        const u = new URL(raw);
+        return u.toString();
+      } catch {}
+      if (PUBLIC_SHOPIFY_DOMAIN) {
+        const domain = PUBLIC_SHOPIFY_DOMAIN.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        const path = raw.startsWith('/') ? raw : raw.startsWith('products/') ? `/${raw}` : `/products/${raw}`;
+        return `https://${domain}${path}`;
+      }
+    }
+    return null;
+  })();
 
   return (
     <main className="min-h-screen bg-primary-50">
@@ -181,12 +198,13 @@ export default function Home() {
             <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
               {t('heroDescription')}
             </p>
-            <button
-              onClick={goToProduct}
+            <a
+              href={ctaHref || undefined}
+              onClick={(e) => { if (!ctaHref) { e.preventDefault(); goToProduct(); } }}
               className="inline-block bg-white/90 hover:bg-white text-primary-900 px-10 py-5 rounded-2xl text-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-white"
             >
               {priceText ? `${t('orderNow')} • ${priceText}` : t('orderNowPrice')}
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -253,9 +271,9 @@ export default function Home() {
                 </ul>
                 
                 {/* CTA Button */}
-                <button onClick={goToProduct} className="w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
+                <a href={ctaHref || undefined} onClick={(e) => { if (!ctaHref) { e.preventDefault(); goToProduct(); } }} className="w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
                   <span className="relative z-10">{priceText ? `${t('orderNow')} • ${priceText}` : t('orderNow')}</span>
-                </button>
+                </a>
                 
                 {/* Additional info */}
                 <div className="text-center mt-6">
