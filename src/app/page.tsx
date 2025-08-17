@@ -96,18 +96,7 @@ export default function Home() {
       })
       .catch(() => {});
   }, []);
-  const ctaHref = (() => {
-    if (runtimeProductUrl) {
-      try { return new URL(runtimeProductUrl).toString(); } catch {}
-      if (BUILD_STORE_DOMAIN) {
-        const domain = BUILD_STORE_DOMAIN.replace(/^https?:\/\//, '').replace(/\/$/, '');
-        const raw = runtimeProductUrl.trim();
-        const path = raw.startsWith('/') ? raw : raw.startsWith('products/') ? `/${raw}` : `/products/${raw}`;
-        return `https://${domain}${path}`;
-      }
-    }
-    return buildTimeHref;
-  })();
+  const ctaHref = 'https://npstq1-x0.myshopify.com/products/r09-smart-ring-waterproof-5atm-health-fitness-rings-heart-rate-blood-oxygen-sleep-monitoring-with-charging-case-for-ios-android-copy-copy';
 
   return (
     <main className="min-h-screen bg-primary-50">
