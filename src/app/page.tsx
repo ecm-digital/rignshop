@@ -210,7 +210,7 @@ export default function Home() {
       <FAQSection />
 
       {/* Order Section */}
-      <section id="order" className="py-24 bg-gradient-to-br from-primary-50 via-white to-primary-100 relative overflow-hidden">
+      <section id="order" className="py-24 bg-gradient-to-br from-primary-50 via-white to-primary-100 relative">
         {/* Background decorative elements */}
         <div className="absolute inset-0">
           <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-primary-200/30 to-transparent rounded-full blur-3xl"></div>
@@ -259,7 +259,7 @@ export default function Home() {
                 </ul>
                 
                 {/* CTA Button */}
-                <a href={ctaHref} className="w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
+                <a href={ctaHref} className="block w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
                   <span className="relative z-10">{priceText ? `${t('orderNow')} • ${priceText}` : t('orderNow')}</span>
                 </a>
                 
