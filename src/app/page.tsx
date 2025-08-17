@@ -14,6 +14,7 @@ export default function Home() {
   const [priceText, setPriceText] = useState<string | null>(null);
   const [variantId, setVariantId] = useState<string | null>(null);
   const [productUrl, setProductUrl] = useState<string | null>(null);
+  const FALLBACK_PRODUCT_URL = process.env.NEXT_PUBLIC_SHOPIFY_PRODUCT_URL || null;
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -71,7 +72,8 @@ export default function Home() {
   }, []);
 
   const goToProduct = () => {
-    if (productUrl) window.location.href = productUrl;
+    const url = productUrl || FALLBACK_PRODUCT_URL;
+    if (url) window.location.href = url as string;
   };
 
   return (
