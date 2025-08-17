@@ -19,19 +19,19 @@ export const translations = {
     // Hero
     heroTitle: 'Nowoczesny sposób',
     heroTitleHighlight: 'na zdrowy sen',
-    heroDescription: 'Inteligentny pierścień, który monitoruje Twój sen, aktywność fizyczną, temperaturę ciała i tętno. Wszystko w jednym eleganckim urządzeniu.',
-    orderNowPrice: 'Zamów teraz - 1299 zł',
+    heroDescription: 'Inteligentny pierścień, który monitoruje sen, aktywność, temperaturę ciała i tętno. Wszystko w jednym eleganckim urządzeniu.',
+    orderNowPrice: 'Zamów teraz – 1299 zł',
     
     // Features
     featuresTitle: 'Wszystko, czego potrzebujesz w jednym pierścieniu',
     sleepMonitoring: 'Monitoring snu',
-    sleepDescription: 'Śledź jakość swojego snu i fazy REM',
+    sleepDescription: 'Śledź głęboki sen i fazy REM, budź się w najlepszym momencie.',
     activityMonitoring: 'Aktywność fizyczna',
-    activityDescription: 'Monitoruj kroki, kalorie i treningi',
+    activityDescription: 'Monitoruj kroki, kalorie i treningi. Ustalaj cele i trzymaj formę.',
     temperatureMonitoring: 'Temperatura ciała',
-    temperatureDescription: 'Ciągłe monitorowanie temperatury',
+    temperatureDescription: 'Subtelne zmiany temperatury pomogą wcześniej wykryć obciążenie organizmu.',
     heartRate: 'Tętno',
-    heartRateDescription: 'Precyzyjne pomiary tętna 24/7',
+    heartRateDescription: 'Precyzyjne pomiary spoczynkowe i podczas wysiłku, 24/7.',
     
     // Stats
     statsTitle: 'Specyfikacje techniczne',
@@ -73,19 +73,19 @@ export const translations = {
     // Hero
     heroTitle: 'Modern way',
     heroTitleHighlight: 'to healthy sleep',
-    heroDescription: 'Smart ring that monitors your sleep, physical activity, body temperature and heart rate. Everything in one elegant device.',
-    orderNowPrice: 'Order now - $299',
+    heroDescription: 'A smart ring that tracks your sleep, activity, body temperature and heart rate. All in one elegant device.',
+    orderNowPrice: 'Order now – $299',
     
     // Features
     featuresTitle: 'Everything you need in one ring',
     sleepMonitoring: 'Sleep Monitoring',
-    sleepDescription: 'Track your sleep quality and REM phases',
+    sleepDescription: 'Track deep sleep and REM; wake up at the right moment.',
     activityMonitoring: 'Physical Activity',
-    activityDescription: 'Monitor steps, calories and workouts',
+    activityDescription: 'Track steps, calories and workouts. Set goals and stay on track.',
     temperatureMonitoring: 'Body Temperature',
-    temperatureDescription: 'Continuous temperature monitoring',
+    temperatureDescription: 'Subtle temperature trends help detect strain early.',
     heartRate: 'Heart Rate',
-    heartRateDescription: 'Precise heart rate measurements 24/7',
+    heartRateDescription: 'Accurate resting and workout heart rate, 24/7.',
     
     // Stats
     statsTitle: 'Technical specifications',
@@ -127,19 +127,19 @@ export const translations = {
     // Hero
     heroTitle: 'Moderner Weg',
     heroTitleHighlight: 'zu gesundem Schlaf',
-    heroDescription: 'Intelligenter Ring, der Ihren Schlaf, körperliche Aktivität, Körpertemperatur und Herzfrequenz überwacht. Alles in einem eleganten Gerät.',
-    orderNowPrice: 'Jetzt bestellen - 299€',
+    heroDescription: 'Intelligenter Ring, der Schlaf, Aktivität, Körpertemperatur und Herzfrequenz misst. Alles in einem eleganten Gerät.',
+    orderNowPrice: 'Jetzt bestellen – 299€',
     
     // Features
     featuresTitle: 'Alles was Sie brauchen in einem Ring',
     sleepMonitoring: 'Schlafüberwachung',
-    sleepDescription: 'Verfolgen Sie Ihre Schlafqualität und REM-Phasen',
+    sleepDescription: 'Verfolge Tiefschlaf und REM‑Phasen, wache im richtigen Moment auf.',
     activityMonitoring: 'Körperliche Aktivität',
-    activityDescription: 'Überwachen Sie Schritte, Kalorien und Workouts',
+    activityDescription: 'Schritte, Kalorien und Workouts im Blick. Ziele setzen und dranbleiben.',
     temperatureMonitoring: 'Körpertemperatur',
-    temperatureDescription: 'Kontinuierliche Temperaturüberwachung',
+    temperatureDescription: 'Feine Temperaturtrends helfen, Belastung früh zu erkennen.',
     heartRate: 'Herzfrequenz',
-    heartRateDescription: 'Präzise Herzfrequenzmessungen 24/7',
+    heartRateDescription: 'Präzise Ruhe‑ und Trainings‑Herzfrequenz, 24/7.',
     
     // Stats
     statsTitle: 'Technische Spezifikationen',

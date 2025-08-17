@@ -4,11 +4,16 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useState, useEffect, useRef } from 'react';
 import LanguageSelector from '@/components/LanguageSelector';
 import ProductGallery from '@/components/ProductGallery';
-import FeaturesCarousel from '@/components/sections/FeaturesCarousel';
+import FeaturesSection from '@/components/sections/FeaturesSection';
+import DetailsSection from '@/components/sections/DetailsSection';
+import FAQSection from '@/components/sections/FAQSection';
 
 export default function Home() {
   const { t } = useLanguage();
   const [detectedCountry, setDetectedCountry] = useState<string | null>(null);
+  const [priceText, setPriceText] = useState<string | null>(null);
+  const [variantId, setVariantId] = useState<string | null>(null);
+  const [productUrl, setProductUrl] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -48,6 +53,26 @@ export default function Home() {
     document.addEventListener('visibilitychange', onVisibility);
     return () => document.removeEventListener('visibilitychange', onVisibility);
   }, []);
+
+  useEffect(() => {
+    fetch('/api/products')
+      .then((r) => r.json())
+      .then((json) => {
+        const p = json?.product;
+        if (!p) return;
+        setVariantId(p.variantId ?? null);
+        if (p.productUrl) setProductUrl(p.productUrl as string);
+        if (p.price && p.currency) {
+          const formatter = new Intl.NumberFormat(undefined, { style: 'currency', currency: p.currency });
+          setPriceText(formatter.format(parseFloat(p.price)));
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const goToProduct = () => {
+    if (productUrl) window.location.href = productUrl;
+  };
 
   return (
     <main className="min-h-screen bg-primary-50">
@@ -138,96 +163,27 @@ export default function Home() {
             <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
               {t('heroDescription')}
             </p>
-            <a
-              href="#order"
+            <button
+              onClick={goToProduct}
               className="inline-block bg-white/90 hover:bg-white text-primary-900 px-10 py-5 rounded-2xl text-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-white"
             >
-              {t('orderNowPrice')}
-            </a>
+              {priceText ? `${t('orderNow')} • ${priceText}` : t('orderNowPrice')}
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Features (Carousel) */}
-      <FeaturesCarousel />
+      {/* Features (stable) */}
+      <FeaturesSection />
 
       {/* Product Gallery */}
       <ProductGallery />
 
-      {/* Stats Section */}
-      <section className="py-20 bg-primary-900 relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-800/20 via-transparent to-primary-700/20"></div>
-          <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary-100/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-primary-100/10 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold text-primary-50 mb-6 font-display">
-              {t('statsTitle')}
-            </h3>
-            <p className="text-xl text-primary-200 max-w-2xl mx-auto">
-              Zaawansowane technologie w eleganckim opakowaniu
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {/* Battery Life */}
-            <div className="group text-center">
-              <div className="relative mb-4">
-                <div className="text-5xl md:text-6xl font-bold text-primary-50 group-hover:scale-110 transition-transform duration-300">
-                  7
-                </div>
-                <div className="absolute -top-2 -right-2 w-4 h-4 bg-accent-cream rounded-full animate-pulse"></div>
-              </div>
-              <div className="text-sm md:text-base text-primary-200 opacity-90 group-hover:opacity-100 transition-opacity">
-                {t('batteryLife')}
-              </div>
-            </div>
-            
-            {/* Measurement Accuracy */}
-            <div className="group text-center">
-              <div className="relative mb-4">
-                <div className="text-5xl md:text-6xl font-bold text-primary-50 group-hover:scale-110 transition-transform duration-300">
-                  99%
-                </div>
-                <div className="absolute -top-2 -right-2 w-4 h-4 bg-accent-steel rounded-full animate-pulse"></div>
-              </div>
-              <div className="text-sm md:text-base text-primary-200 opacity-90 group-hover:opacity-100 transition-opacity">
-                {t('measurementAccuracy')}
-              </div>
-            </div>
-            
-            {/* 24/7 Monitoring */}
-            <div className="group text-center">
-              <div className="relative mb-4">
-                <div className="text-5xl md:text-6xl font-bold text-primary-50 group-hover:scale-110 transition-transform duration-300">
-                  24/7
-                </div>
-                <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-300 rounded-full animate-pulse"></div>
-              </div>
-              <div className="text-sm md:text-base text-primary-200 opacity-90 group-hover:opacity-100 transition-opacity">
-                {t('monitoring')}
-              </div>
-            </div>
-            
-            {/* Water Resistance */}
-            <div className="group text-center">
-              <div className="relative mb-4">
-                <div className="text-5xl md:text-6xl font-bold text-primary-50 group-hover:scale-110 transition-transform duration-300">
-                  50m
-                </div>
-                <div className="absolute -top-2 -right-2 w-4 h-4 bg-accent-navy rounded-full animate-pulse"></div>
-              </div>
-              <div className="text-sm md:text-base text-primary-200 opacity-90 group-hover:opacity-100 transition-opacity">
-                {t('waterResistance')}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Long description */}
+      <DetailsSection />
+
+      {/* FAQ */}
+      <FAQSection />
 
       {/* Order Section */}
       <section id="order" className="py-24 bg-gradient-to-br from-primary-50 via-white to-primary-100 relative overflow-hidden">
@@ -279,8 +235,8 @@ export default function Home() {
                 </ul>
                 
                 {/* CTA Button */}
-                <button className="w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
-                  <span className="relative z-10">{t('orderNow')}</span>
+                <button onClick={goToProduct} className="w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
+                  <span className="relative z-10">{priceText ? `${t('orderNow')} • ${priceText}` : t('orderNow')}</span>
                 </button>
                 
                 {/* Additional info */}

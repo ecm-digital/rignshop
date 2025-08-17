@@ -16,7 +16,7 @@ export default function FeaturesCarousel() {
   const baseFeatures: Feature[] = useMemo(
     () => [
       { icon: "💤", title: t("sleepMonitoring"), description: t("sleepDescription"), gradient: "from-blue-500 to-blue-600", image: "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1600&q=80" },
-      { icon: "🏃", title: t("activityMonitoring"), description: t("activityDescription"), gradient: "from-green-500 to-green-600", image: "https://source.unsplash.com/1600x900/?running,fitness,park" },
+      { icon: "🏃", title: t("activityMonitoring"), description: t("activityDescription"), gradient: "from-green-500 to-green-600", image: "https://images.unsplash.com/photo-1546491764-67a5b673d8b4?auto=format&fit=crop&w=1600&q=80" },
       { icon: "🌡️", title: t("temperatureMonitoring"), description: t("temperatureDescription"), gradient: "from-orange-500 to-orange-600", image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80" },
       { icon: "❤️", title: t("heartRate"), description: t("heartRateDescription"), gradient: "from-red-500 to-red-600", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80" },
     ],
@@ -241,8 +241,7 @@ export default function FeaturesCarousel() {
                     </div>
                     <button
                       aria-label="More"
-                      className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-primary-900 shadow flex items-center justify-center z-20"
-                      onPointerDown={(e) => { e.stopPropagation(); }}
+                      className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-primary-900 shadow flex items-center justify-center"
                       onClick={() => {
                         const nextIdx = expanded === idx ? null : idx;
                         setExpanded(nextIdx);

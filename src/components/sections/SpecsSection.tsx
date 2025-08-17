@@ -8,37 +8,45 @@ const specifications = [
   {
     category: 'Wymiary i waga',
     specs: [
-      { name: 'Szerokość', value: '7.9mm', description: 'Elegancki, dyskretny profil' },
-      { name: 'Grubość', value: '2.55mm', description: 'Ultracienki design' },
-      { name: 'Waga', value: '4-6g', description: 'W zależności od rozmiaru' },
-      { name: 'Rozmiary', value: '6-13', description: 'Dostępne rozmiary US' }
+      { name: 'Średnice wewnętrzne', value: '18,3 / 19,1 / 20,0 / 20,8 / 21,6 mm', description: 'Rozmiary: 8 / 9 / 10 / 11 / 12' },
+      { name: 'Waga', value: 'ok. 3,5 g', description: 'Ultralekka konstrukcja' },
+      { name: 'Materiał', value: 'Stal nierdzewna', description: 'Trwała i hipoalergiczna' },
     ]
   },
   {
     category: 'Bateria i ładowanie',
     specs: [
-      { name: 'Czas pracy', value: '7 dni', description: 'Przy normalnym użytkowaniu' },
-      { name: 'Czas ładowania', value: '80 min', description: 'Pełne naładowanie' },
-      { name: 'Typ baterii', value: 'Li-ion', description: 'Akumulator litowo-jonowy' },
-      { name: 'Ładowanie', value: 'Bezprzewodowe', description: 'Magnetyczna stacja dokująca' }
+      { name: 'Pojemność', value: '14 mAh (od rozmiaru 11: 18 mAh)', description: 'Polimer‑Li‑Ion' },
+      { name: 'Czas pracy', value: '5–7 dni', description: 'Stan czuwania do 15 dni' },
+      { name: 'Czas ładowania', value: 'ok. 1,5 h', description: 'Pełne naładowanie' },
+      { name: 'Ładowanie', value: 'Magnetyczne etui', description: 'Etui + kabel w zestawie' },
     ]
   },
   {
-    category: 'Sensory i funkcje',
+    category: 'Łączność i układ',
     specs: [
-      { name: 'Pulsometr', value: 'PPG', description: 'Precyzyjny pomiar tętna' },
-      { name: 'Temperatura', value: '±0.1°C', description: 'Dokładność pomiaru' },
-      { name: 'Akcelerometr', value: '3-osiowy', description: 'Śledzenie aktywności' },
-      { name: 'Żyroskop', value: '3-osiowy', description: 'Detekcja ruchu' }
+      { name: 'Bluetooth', value: '5.2 Low‑Power', description: 'Stabilna, energooszczędna' },
+      { name: 'Chipset', value: 'Realtek RTL8762 ESF', description: 'Wydajny układ SoC' },
+      { name: 'Aplikacja', value: 'QRing', description: 'Android 5.1+ / iOS 8.0+' },
+      { name: 'Języki', value: '> 30', description: 'Wielojęzyczny interfejs' },
     ]
   },
   {
-    category: 'Materiały i odporność',
+    category: 'Czujniki i pomiary',
     specs: [
-      { name: 'Materiał', value: 'Tytan', description: 'Klasa medyczna' },
-      { name: 'Powłoka', value: 'PVD', description: 'Odporna na zarysowania' },
-      { name: 'Wodoodporność', value: '50m', description: 'Pływanie i nurkowanie' },
-      { name: 'Temperatura pracy', value: '-10°C do 52°C', description: 'Szeroki zakres' }
+      { name: 'Tętno / HRV', value: 'Vcare VC30F‑S', description: 'Pomiary 24/7' },
+      { name: 'Akcelerometr', value: 'ST LIS2DOCTR', description: 'Kroki, aktywność, tryby sportowe' },
+      { name: 'Temperatura skóry', value: 'Trend dobowy', description: 'Wczesne wykrywanie obciążenia' },
+      { name: 'SpO₂ / stres / sen', value: 'Tak', description: 'Analiza jakości snu (w tym REM)' },
+    ]
+  },
+  {
+    category: 'Odporność i wykonanie',
+    specs: [
+      { name: 'Wodoodporność', value: '5 ATM', description: 'Codzienne użytkowanie, sport' },
+      { name: 'Obudowa', value: 'Stal nierdzewna', description: 'Elegancka i trwała' },
+      { name: 'Etui ładujące', value: 'Magnetyczne', description: 'Bezpieczne przechowywanie i ładowanie' },
+      { name: 'Zawartość zestawu', value: 'Ring, etui, kabel, instrukcja', description: 'Komplet startowy' },
     ]
   }
 ];
@@ -63,8 +71,7 @@ export default function SpecsSection() {
             <span className="text-blue-600">techniczne</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Poznaj szczegółowe parametry techniczne Smart Ring - urządzenia zaprojektowanego 
-            z myślą o precyzji, trwałości i komforcie użytkowania.
+            Kluczowe parametry Smart Ring: lekki, wodoodporny, z bogatym zestawem czujników i długim czasem pracy.
           </p>
         </motion.div>
 
