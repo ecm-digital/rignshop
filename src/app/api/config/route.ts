@@ -6,6 +6,8 @@ export async function GET() {
   try {
     const raw = process.env.NEXT_PUBLIC_SHOPIFY_PRODUCT_URL?.trim();
     const domainRaw = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN?.trim();
+    const clean = raw?.replace(/^@+/, '');
+    const domainClean = domainRaw?.replace(/^@+/, '');
 
     const buildUrl = (candidate?: string | null, storeDomain?: string | null) => {
       if (!candidate) return null;
@@ -23,7 +25,7 @@ export async function GET() {
       return `https://${domain}${path}`;
     };
 
-    const ctaUrl = buildUrl(raw || null, domainRaw || null);
+    const ctaUrl = buildUrl(clean || null, domainClean || null);
     return NextResponse.json({ ctaUrl });
   } catch (e) {
     const message = e instanceof Error ? e.message : 'Unknown error';
