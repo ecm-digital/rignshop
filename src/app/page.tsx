@@ -9,6 +9,27 @@ import DetailsSection from '@/components/sections/DetailsSection';
 import FAQSection from '@/components/sections/FAQSection';
 
 export default function Home() {
+  // Build-time fallback for href to ensure SSR has a valid absolute link
+  const BUILD_PRODUCT_URL = (process.env.NEXT_PUBLIC_SHOPIFY_PRODUCT_URL || '').trim();
+  const BUILD_STORE_DOMAIN = (process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || '').trim();
+  const buildTimeHref = (() => {
+    if (BUILD_PRODUCT_URL) {
+      try {
+        const u = new URL(BUILD_PRODUCT_URL);
+        return u.toString();
+      } catch {}
+      if (BUILD_STORE_DOMAIN) {
+        const domain = BUILD_STORE_DOMAIN.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        const path = BUILD_PRODUCT_URL.startsWith('/')
+          ? BUILD_PRODUCT_URL
+          : BUILD_PRODUCT_URL.startsWith('products/')
+            ? `/${BUILD_PRODUCT_URL}`
+            : `/products/${BUILD_PRODUCT_URL}`;
+        return `https://${domain}${path}`;
+      }
+    }
+    return undefined;
+  })();
   const { t } = useLanguage();
   const [detectedCountry, setDetectedCountry] = useState<string | null>(null);
   const [priceText, setPriceText] = useState<string | null>(null);
@@ -184,7 +205,7 @@ export default function Home() {
               {t('heroDescription')}
             </p>
             <a
-              href={ctaHref || undefined}
+              href={buildTimeHref || ctaHref || productUrl || undefined}
               onClick={(e) => { if (!ctaHref) { e.preventDefault(); goToProduct(); } }}
               className="inline-block bg-white/90 hover:bg-white text-primary-900 px-10 py-5 rounded-2xl text-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-white"
             >
@@ -256,7 +277,7 @@ export default function Home() {
                 </ul>
                 
                 {/* CTA Button */}
-                <a href={ctaHref || undefined} onClick={(e) => { if (!ctaHref) { e.preventDefault(); goToProduct(); } }} className="w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
+                <a href={buildTimeHref || ctaHref || productUrl || undefined} onClick={(e) => { if (!ctaHref) { e.preventDefault(); goToProduct(); } }} className="w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
                   <span className="relative z-10">{priceText ? `${t('orderNow')} • ${priceText}` : t('orderNow')}</span>
                 </a>
                 
