@@ -259,7 +259,7 @@ export default function Home() {
                 </ul>
                 
                 {/* CTA Button */}
-                <a href={ctaHref} className="block w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700">
+                <a href={ctaHref} className="block w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700 flex items-center justify-center text-center">
                   <span className="relative z-10">{priceText ? `${t('orderNow')} • ${priceText}` : t('orderNow')}</span>
                 </a>
                 
