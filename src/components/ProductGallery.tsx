@@ -102,40 +102,17 @@ export default function ProductGallery() {
           </div>
         </div>
 
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Hero image */}
-          <div className={`rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br ${current.className} min-h-[360px] flex items-center justify-center`}>
-            <div className="relative w-full h-[360px] md:h-[420px]">
+        {/* Single image (no cropping) */}
+        <div className="max-w-4xl mx-auto">
+          <div className={`rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br ${current.className} flex items-center justify-center`}>
+            <div className="relative w-full h-[420px] md:h-[520px]">
               <ImageWithFallback
                 src={imgs.hero}
                 alt={`${t('galleryTitle')} - hero - ${color}`}
-                sizes="(min-width: 768px) 50vw, 100vw"
+                sizes="100vw"
+                className="object-contain"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-            </div>
-          </div>
-
-          {/* Close-ups */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="rounded-xl overflow-hidden bg-gray-50 shadow-sm">
-              <div className="text-sm font-medium text-gray-700 p-4">{t('closeUps')} 1</div>
-              <div className="relative h-40">
-                <ImageWithFallback src={imgs.close1} alt={`${t('galleryTitle')} - close 1 - ${color}`} sizes="(min-width: 768px) 25vw, 50vw" />
-              </div>
-            </div>
-            <div className="rounded-xl overflow-hidden bg-gray-50 shadow-sm">
-              <div className="text-sm font-medium text-gray-700 p-4">{t('closeUps')} 2</div>
-              <div className="relative h-40">
-                <ImageWithFallback src={imgs.close2} alt={`${t('galleryTitle')} - close 2 - ${color}`} sizes="(min-width: 768px) 25vw, 50vw" />
-              </div>
-            </div>
-            <div className="rounded-xl overflow-hidden bg-gray-50 shadow-sm col-span-2">
-              <div className="text-sm font-medium text-gray-700 p-4">{t('closeUps')} 3</div>
-              <div className="relative h-40">
-                <ImageWithFallback src={imgs.close3} alt={`${t('galleryTitle')} - close 3 - ${color}`} sizes="(min-width: 768px) 50vw, 100vw" />
-              </div>
             </div>
           </div>
         </div>
