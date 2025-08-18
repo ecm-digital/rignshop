@@ -29,17 +29,26 @@ function ImageWithFallback({ src, alt, sizes, className, priority = false }: { s
   );
 }
 
-// Drop your images into public/images/ as product-1.jpg, product-2.jpg, product-3.jpg
-const local = {
-  hero: '/images/product-1.jpg',
-  close1: '/images/product-2.jpg',
-  close2: '/images/product-3.jpg',
-  close3: '/images/product-3.jpg',
-};
+// Use user's uploaded images from public/Images
 const galleryImages: Record<ColorKey, { hero: string; close1: string; close2: string; close3: string }> = {
-  black: local,
-  silver: local,
-  gold: local,
+  black: {
+    hero: '/Images/Black.webp',
+    close1: '/Images/Black.webp',
+    close2: '/Images/Black.webp',
+    close3: '/Images/Black.webp',
+  },
+  silver: {
+    hero: '/Images/Silver.webp',
+    close1: '/Images/Silver.webp',
+    close2: '/Images/Silver.webp',
+    close3: '/Images/Silver.webp',
+  },
+  gold: {
+    hero: '/Images/Gold.webp',
+    close1: '/Images/Gold.webp',
+    close2: '/Images/Gold.webp',
+    close3: '/Images/Gold.webp',
+  },
 };
 
 export default function ProductGallery() {
