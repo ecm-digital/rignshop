@@ -29,27 +29,17 @@ function ImageWithFallback({ src, alt, sizes, className, priority = false }: { s
   );
 }
 
+// Drop your images into public/images/ as product-1.jpg, product-2.jpg, product-3.jpg
+const local = {
+  hero: '/images/product-1.jpg',
+  close1: '/images/product-2.jpg',
+  close2: '/images/product-3.jpg',
+  close3: '/images/product-3.jpg',
+};
 const galleryImages: Record<ColorKey, { hero: string; close1: string; close2: string; close3: string }> = {
-  // Stable Unsplash page IDs via source.unsplash.com
-  // 3ayB2SanzYQ (dark smart ring), 5JgjeQzzftU (silver ring), 4RkSsYzxTps (warm ring on table)
-  black: {
-    hero: 'https://source.unsplash.com/3ayB2SanzYQ/1200x800',
-    close1: 'https://source.unsplash.com/5JgjeQzzftU/800x600',
-    close2: 'https://source.unsplash.com/4RkSsYzxTps/800x600',
-    close3: 'https://source.unsplash.com/3ayB2SanzYQ/1600x500',
-  },
-  silver: {
-    hero: 'https://source.unsplash.com/5JgjeQzzftU/1200x800',
-    close1: 'https://source.unsplash.com/4RkSsYzxTps/800x600',
-    close2: 'https://source.unsplash.com/3ayB2SanzYQ/800x600',
-    close3: 'https://source.unsplash.com/5JgjeQzzftU/1600x500',
-  },
-  gold: {
-    hero: 'https://source.unsplash.com/4RkSsYzxTps/1200x800',
-    close1: 'https://source.unsplash.com/3ayB2SanzYQ/800x600',
-    close2: 'https://source.unsplash.com/5JgjeQzzftU/800x600',
-    close3: 'https://source.unsplash.com/4RkSsYzxTps/1600x500',
-  },
+  black: local,
+  silver: local,
+  gold: local,
 };
 
 export default function ProductGallery() {
