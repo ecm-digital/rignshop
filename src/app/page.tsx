@@ -223,7 +223,7 @@ export default function Home() {
               {t('orderTitle')}
             </h3>
             <p className="text-xl text-primary-600 max-w-2xl mx-auto">
-              Dołącz do tysięcy zadowolonych użytkowników Smart Ring
+              {t('orderSubtitle')}
             </p>
           </div>
           
