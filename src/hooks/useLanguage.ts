@@ -51,10 +51,12 @@ export const translations = {
     
     // Order
     orderTitle: 'Zamów już dziś Smart Ring',
+    orderSubtitle: 'Dołącz do tysięcy zadowolonych użytkowników Smart Ring',
     price: '1299 zł',
     freeShipping: 'Darmowa dostawa',
     returnPolicy: '30 dni na zwrot',
     warranty: '2 lata gwarancji',
+    orderAdditionalInfo: '🔒 Bezpieczna płatność • 📱 Kompatybilne z iOS i Android',
 
     // Details
     detailsTitle: 'Szczegółowy opis',
@@ -75,6 +77,8 @@ export const translations = {
     detailsCompatibility: 'Kompatybilność: Android 5.1+ / iOS 8.0+ • Aplikacja: QRing • Bluetooth 5.2',
     
     // Footer
+    quickLinks: 'Szybkie linki',
+    socialMedia: 'Social Media',
     footerDescription: 'Nowoczesne rozwiązania do monitorowania zdrowia i snu',
     copyright: ' 2024 Smart Ring. Wszystkie prawa zastrzeżone.'
   },
@@ -124,10 +128,12 @@ export const translations = {
     
     // Order
     orderTitle: 'Order Smart Ring Today',
+    orderSubtitle: 'Join thousands of happy Smart Ring users',
     price: '$299',
     freeShipping: 'Free shipping',
     returnPolicy: '30-day return',
     warranty: '2-year warranty',
+    orderAdditionalInfo: '🔒 Secure payment • 📱 Compatible with iOS and Android',
 
     // Details
     detailsTitle: 'Detailed description',
@@ -148,6 +154,8 @@ export const translations = {
     detailsCompatibility: 'Compatibility: Android 5.1+ / iOS 8.0+ • App: QRing • Bluetooth 5.2',
     
     // Footer
+    quickLinks: 'Quick links',
+    socialMedia: 'Social Media',
     footerDescription: 'Modern solutions for health and sleep monitoring',
     copyright: '© 2024 Smart Ring. All rights reserved.'
   },
@@ -197,10 +205,12 @@ export const translations = {
     
     // Order
     orderTitle: 'Bestellen Sie Smart Ring heute',
+    orderSubtitle: 'Schließen Sie sich tausenden zufriedenen Smart‑Ring‑Nutzern an',
     price: '299€',
     freeShipping: 'Kostenloser Versand',
     returnPolicy: '30 Tage Rückgabe',
     warranty: '2 Jahre Garantie',
+    orderAdditionalInfo: '🔒 Sichere Zahlung • 📱 Kompatibel mit iOS und Android',
 
     // Details
     detailsTitle: 'Detaillierte Beschreibung',
@@ -221,6 +231,8 @@ export const translations = {
     detailsCompatibility: 'Kompatibilität: Android 5.1+ / iOS 8.0+ • App: QRing • Bluetooth 5.2',
     
     // Footer
+    quickLinks: 'Schnelle Links',
+    socialMedia: 'Soziale Medien',
     footerDescription: 'Moderne Lösungen für Gesundheits- und Schlafüberwachung',
     copyright: '© 2024 Smart Ring. Alle Rechte vorbehalten.'
   }

@@ -239,7 +239,7 @@ export default function Home() {
                   <div className="text-5xl font-bold text-primary-900 mb-2">
                     {t('price')}
                   </div>
-                  <p className="text-primary-500 text-sm">Jednorazowa płatność</p>
+                  <p className="text-primary-500 text-sm">{t('orderSubtitle')}</p>
                 </div>
                 
                 {/* Features list */}
@@ -266,7 +266,7 @@ export default function Home() {
                 {/* Additional info */}
                 <div className="text-center mt-6">
                   <p className="text-sm text-primary-500">
-                    🔒 Bezpieczna płatność • 📱 Kompatybilne z iOS i Android
+                    {t('orderAdditionalInfo')}
                   </p>
                 </div>
               </div>
@@ -302,21 +302,21 @@ export default function Home() {
             
             {/* Quick Links */}
             <div className="text-center md:text-left">
-              <h5 className="text-xl font-semibold mb-6 text-primary-50">Szybkie linki</h5>
+              <h5 className="text-xl font-semibold mb-6 text-primary-50">{t('quickLinks')}</h5>
               <ul className="space-y-3">
                 <li>
                   <a href="#features" className="text-primary-300 hover:text-primary-100 transition-colors duration-300 hover:translate-x-1 inline-block">
-                    Funkcje
+                    {t('features')}
                   </a>
                 </li>
                 <li>
                   <a href="#specifications" className="text-primary-300 hover:text-primary-100 transition-colors duration-300 hover:translate-x-1 inline-block">
-                    Specyfikacje
+                    {t('specifications')}
                   </a>
                 </li>
                 <li>
                   <a href="#order" className="text-primary-300 hover:text-primary-100 transition-colors duration-300 hover:translate-x-1 inline-block">
-                    Zamów
+                    {t('order')}
                   </a>
                 </li>
               </ul>
@@ -324,7 +324,7 @@ export default function Home() {
             
             {/* Social Media */}
             <div className="text-center md:text-left">
-              <h5 className="text-xl font-semibold mb-6 text-primary-50">Social Media</h5>
+              <h5 className="text-xl font-semibold mb-6 text-primary-50">{t('socialMedia')}</h5>
               <div className="flex justify-center md:justify-start space-x-4">
                 <a href="#" className="group w-12 h-12 bg-primary-800 hover:bg-primary-700 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 border border-primary-700">
                   <span className="text-primary-100 text-lg group-hover:scale-110 transition-transform duration-300">📘</span>

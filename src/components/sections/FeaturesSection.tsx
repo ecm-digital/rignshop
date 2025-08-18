@@ -8,26 +8,26 @@ import { useLanguage } from '@/hooks/useLanguage';
 const features = [
   {
     icon: '💤',
-    title: 'Monitoring snu',
-    description: 'Śledź jakość swojego snu, fazy REM i głębokiego snu. Otrzymuj spersonalizowane rekomendacje dla lepszego odpoczynku.',
+    titleKey: 'sleepMonitoring',
+    descKey: 'sleepDescription',
     color: 'from-blue-500 to-blue-600'
   },
   {
     icon: '🏃',
-    title: 'Aktywność fizyczna',
-    description: 'Monitoruj kroki, kalorie, dystans i intensywność treningów. Ustaw cele i śledź swoje postępy.',
+    titleKey: 'activityMonitoring',
+    descKey: 'activityDescription',
     color: 'from-green-500 to-green-600'
   },
   {
     icon: '🌡️',
-    title: 'Temperatura ciała',
-    description: 'Ciągłe monitorowanie temperatury ciała pomaga wykryć zmiany w zdrowiu i cyklu menstruacyjnym.',
+    titleKey: 'temperatureMonitoring',
+    descKey: 'temperatureDescription',
     color: 'from-orange-500 to-orange-600'
   },
   {
     icon: '❤️',
-    title: 'Tętno',
-    description: 'Precyzyjne pomiary tętna spoczynkowego i podczas aktywności. Alerty przy nieprawidłowych wartościach.',
+    titleKey: 'heartRate',
+    descKey: 'heartRateDescription',
     color: 'from-red-500 to-red-600'
   }
 ];
@@ -71,10 +71,10 @@ export default function FeaturesSection() {
                 
                 {/* Content */}
                 <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                  {feature.title}
+                  {t(feature.titleKey as keyof typeof import('@/hooks/useLanguage').translations.pl)}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {feature.description}
+                  {t(feature.descKey as keyof typeof import('@/hooks/useLanguage').translations.pl)}
                 </p>
                 
                 {/* Hover effect line */}
