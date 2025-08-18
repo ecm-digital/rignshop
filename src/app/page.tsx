@@ -77,7 +77,40 @@ export default function Home() {
       if (!document.hidden) tryPlay();
     };
     document.addEventListener('visibilitychange', onVisibility);
-    return () => document.removeEventListener('visibilitychange', onVisibility);
+
+    const tryOnce = () => {
+      const v = videoRef.current;
+      if (!v) return;
+      v.muted = true;
+      v.playsInline = true;
+      v.setAttribute('playsinline', 'true');
+      v.setAttribute('webkit-playsinline', 'true');
+      v.play().catch(() => {});
+      window.removeEventListener('touchstart', tryOnce, true);
+      window.removeEventListener('click', tryOnce, true);
+      window.removeEventListener('pointerdown', tryOnce, true);
+      window.removeEventListener('scroll', tryOnce, true);
+    };
+    window.addEventListener('touchstart', tryOnce, { once: true, capture: true } as unknown as boolean);
+    window.addEventListener('click', tryOnce, { once: true, capture: true } as unknown as boolean);
+    window.addEventListener('pointerdown', tryOnce, { once: true, capture: true } as unknown as boolean);
+    window.addEventListener('scroll', tryOnce, { once: true, capture: true } as unknown as boolean);
+
+    const retry = setTimeout(() => {
+      const v = videoRef.current;
+      if (!v) return;
+      v.muted = true;
+      v.play().catch(() => {});
+    }, 1200);
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibility);
+      window.removeEventListener('touchstart', tryOnce, true);
+      window.removeEventListener('click', tryOnce, true);
+      window.removeEventListener('pointerdown', tryOnce, true);
+      window.removeEventListener('scroll', tryOnce, true);
+      clearTimeout(retry);
+    };
   }, []);
 
   useEffect(() => {
@@ -151,6 +184,7 @@ export default function Home() {
             autoPlay
             loop
             muted
+            defaultMuted
             playsInline
             preload="auto"
             poster="/video-poster.svg"
