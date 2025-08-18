@@ -161,14 +161,29 @@ export default function Home() {
             </nav>
 
             {/* Language selector and CTA */}
-            <div className="flex items-center space-x-4">
-              <LanguageSelector />
-              <a
-                href="#order"
-                className="group relative bg-primary-50 hover:bg-primary-100 text-primary-900 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-md border border-primary-200"
-              >
-                <span className="relative z-10">{t('orderNow')}</span>
-              </a>
+            <div className="flex items-center space-x-4 md:space-x-4">
+              <div className="hidden md:block">
+                <LanguageSelector />
+              </div>
+              <div className="hidden md:block">
+                <a
+                  href="#order"
+                  className="group relative bg-primary-50 hover:bg-primary-100 text-primary-900 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-md border border-primary-200"
+                >
+                  <span className="relative z-10">{t('orderNow')}</span>
+                </a>
+              </div>
+              <div className="flex flex-col w-full space-y-2 md:hidden">
+                <a
+                  href="#order"
+                  className="w-full text-center bg-primary-50 hover:bg-primary-100 text-primary-900 px-4 py-3 rounded-lg text-sm font-medium border border-primary-200"
+                >
+                  {t('orderNow')}
+                </a>
+                <div className="flex justify-center">
+                  <LanguageSelector />
+                </div>
+              </div>
             </div>
           </div>
         </div>
