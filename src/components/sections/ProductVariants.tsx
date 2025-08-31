@@ -9,7 +9,7 @@ const variants = [
     id: 'black',
     name: 'Midnight Black',
     color: 'Czarny',
-    price: 1299,
+    price: 99,
     description: 'Elegancki czarny pierścień z matowym wykończeniem PVD. Idealny do codziennego noszenia.',
     gradient: 'from-gray-800 to-gray-900',
     features: ['Matowe wykończenie', 'Odporne na zarysowania', 'Dyskretny design']
@@ -18,7 +18,7 @@ const variants = [
     id: 'silver',
     name: 'Titanium Silver',
     color: 'Srebrny',
-    price: 1299,
+    price: 99,
     description: 'Klasyczny srebrny pierścień z naturalnego tytanu. Ponadczasowy i uniwersalny.',
     gradient: 'from-gray-300 to-gray-400',
     features: ['Naturalny tytan', 'Hypoalergiczny', 'Klasyczny wygląd']
@@ -27,7 +27,7 @@ const variants = [
     id: 'gold',
     name: 'Rose Gold',
     color: 'Złoty',
-    price: 1399,
+    price: 99,
     description: 'Luksusowy pierścień w kolorze różowego złota. Wyróżnia się elegancją i stylem.',
     gradient: 'from-yellow-400 to-yellow-600',
     features: ['Powłoka PVD', 'Luksusowy wygląd', 'Limitowana edycja']
@@ -94,7 +94,7 @@ export default function ProductVariants() {
                 className="absolute -top-4 -right-4 bg-white rounded-full p-4 shadow-lg"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">{selectedVariant.price} zł</div>
+                  <div className="text-2xl font-bold text-gray-900">{selectedVariant.price}€</div>
                   <div className="text-xs text-gray-600">+ darmowa dostawa</div>
                 </div>
               </motion.div>
@@ -138,10 +138,7 @@ export default function ProductVariants() {
                         <div className="text-sm text-gray-600">{variant.color}</div>
                       </div>
                       <div className="text-right">
-                        <div className="font-bold text-gray-900">{variant.price} zł</div>
-                        {variant.price > 1299 && (
-                          <div className="text-xs text-orange-600">Limitowana edycja</div>
-                        )}
+                        <div className="font-bold text-gray-900">{variant.price}€</div>
                       </div>
                     </div>
                   </button>

@@ -20,7 +20,7 @@ export const translations = {
     heroTitle: 'Inteligentny Sen',
     heroTitleHighlight: '',
     heroDescription: 'Zaawansowane monitorowanie zdrowia w eleganckim pierścieniu. Śledź sen, aktywność i parametry życiowe 24/7 dzięki najnowocześniejszej technologii.',
-    orderNowPrice: 'Zamów teraz – 1299 zł',
+    orderNowPrice: 'Zamów teraz – 99€',
     
     // Features
     featuresTitle: 'Wszystko, czego potrzebujesz w jednym pierścieniu',
@@ -52,7 +52,7 @@ export const translations = {
     // Order
     orderTitle: 'Zamów już dziś Smart Ring',
     orderSubtitle: 'Dołącz do tysięcy zadowolonych użytkowników Smart Ring',
-    price: '1299 zł',
+    price: '99€',
     freeShipping: 'Darmowa dostawa',
     returnPolicy: '30 dni na zwrot',
     warranty: '2 lata gwarancji',
@@ -130,7 +130,7 @@ export const translations = {
     availableOptionsColors: '• Kolory: Czarny, Złoty, Srebrny',
     productBenefitsTitle: 'KORZYŚCI PRODUKTU',
     productBenefitsList: '• Brak kosztów abonamentowych (w porównaniu do innych inteligentnych pierścieni i trackerów zdrowia jak Oura™ i Whoop™)\n• 7+ dni pracy baterii\n• Zaawansowane monitorowanie snu\n• Śledzenie aktywności\n• Analiza tętna i HRV\n• Darmowa dostawa na cały świat',
-    priceTitle: 'CENA: 1299 zł',
+    priceTitle: 'CENA: 99€',
     shippingInfo: 'Wysyłka w ciągu 24 godzin',
     readyToTransformTitle: 'GOTOWY NA TRANSFORMACJĘ ZDROWIA?',
     readyToTransformDesc: 'Dołącz do tysięcy użytkowników przejmujących kontrolę nad swoim zdrowiem dzięki najbardziej zaawansowanej technologii inteligentnych pierścieni dostępnej na rynku.',
@@ -156,7 +156,7 @@ export const translations = {
     heroTitle: 'Smart Sleep',
     heroTitleHighlight: '',
     heroDescription: 'Advanced health monitoring in an elegant ring. Track sleep, activity, and vital signs 24/7 with cutting-edge technology.',
-    orderNowPrice: 'Order now – $299',
+    orderNowPrice: 'Order now – €99',
     
     // Features
     featuresTitle: 'Everything you need in one ring',
@@ -188,7 +188,7 @@ export const translations = {
     // Order
     orderTitle: 'Order Smart Ring Today',
     orderSubtitle: 'Join thousands of happy Smart Ring users',
-    price: '$299',
+    price: '€99',
     freeShipping: 'Free shipping',
     returnPolicy: '30-day return',
     warranty: '2-year warranty',
@@ -292,7 +292,7 @@ export const translations = {
     heroTitle: 'Intelligenter Schlafen',
     heroTitleHighlight: '',
     heroDescription: 'Fortschrittliche Gesundheitsüberwachung in einem eleganten Ring. Verfolgen Sie Schlaf, Aktivität und Vitalwerte 24/7 mit modernster Technologie.',
-    orderNowPrice: 'Jetzt bestellen – 299€',
+    orderNowPrice: 'Jetzt bestellen – 99€',
     
     // Features
     featuresTitle: 'Alles was Sie brauchen in einem Ring',
@@ -324,7 +324,7 @@ export const translations = {
     // Order
     orderTitle: 'Bestellen Sie Smart Ring heute',
     orderSubtitle: 'Schließen Sie sich tausenden zufriedenen Smart‑Ring‑Nutzern an',
-    price: '299€',
+    price: '99€',
     freeShipping: 'Kostenloser Versand',
     returnPolicy: '30 Tage Rückgabe',
     warranty: '2 Jahre Garantie',
@@ -402,7 +402,7 @@ export const translations = {
     availableOptionsColors: '• Farben: Schwarz, Gold, Silber',
     productBenefitsTitle: 'PRODUKTVORTEILE',
     productBenefitsList: '• Keine wiederkehrenden App-Kosten (im Vergleich zu anderen intelligenten Ringen und Gesundheitstrackern wie Oura™ und Whoop™)\n• 7+ Tage Akkulaufzeit\n• Erweiterte Schlafüberwachung\n• Aktivitätsverfolgung\n• Herzfrequenz- und HRV-Analyse\n• Kostenloser weltweiter Versand',
-    priceTitle: 'PREIS: 299€',
+    priceTitle: 'PREIS: 99€',
     shippingInfo: 'Versand innerhalb von 24 Stunden',
     readyToTransformTitle: 'BEREIT, IHRE GESUNDHEIT ZU TRANSFORMIEREN?',
     readyToTransformDesc: 'Schließen Sie sich Tausenden von Benutzern an, die mit der fortschrittlichsten verfügbaren intelligenten Ring-Technologie die Kontrolle über ihre Gesundheit übernehmen.',

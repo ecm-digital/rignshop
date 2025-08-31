@@ -340,7 +340,7 @@ export default function OrderSection() {
                   size="xl"
                   className="w-full"
                 >
-                  Zamów teraz - 1 299 zł
+                  Zamów teraz - 99€
                 </Button>
                 <p className="text-xs text-gray-600 text-center mt-3">
                   Klikając &quot;Zamów teraz&quot; akceptujesz nasze warunki sprzedaży i politykę prywatności
