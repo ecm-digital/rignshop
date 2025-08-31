@@ -10,105 +10,86 @@ const features = [
     icon: '💤',
     titleKey: 'sleepMonitoring',
     descKey: 'sleepDescription',
-    color: 'from-blue-500 to-blue-600'
+    gradient: 'from-gray-100 to-gray-200',
+    iconBg: 'bg-gray-100',
+    iconColor: 'text-black'
   },
   {
     icon: '🏃',
     titleKey: 'activityMonitoring',
     descKey: 'activityDescription',
-    color: 'from-green-500 to-green-600'
+    gradient: 'from-gray-100 to-gray-200',
+    iconBg: 'bg-gray-100',
+    iconColor: 'text-black'
   },
   {
     icon: '🌡️',
     titleKey: 'temperatureMonitoring',
     descKey: 'temperatureDescription',
-    color: 'from-orange-500 to-orange-600'
+    gradient: 'from-gray-100 to-gray-200',
+    iconBg: 'bg-gray-100',
+    iconColor: 'text-black'
   },
   {
     icon: '❤️',
     titleKey: 'heartRate',
     descKey: 'heartRateDescription',
-    color: 'from-red-500 to-red-600'
+    gradient: 'from-gray-100 to-gray-200',
+    iconBg: 'bg-gray-100',
+    iconColor: 'text-black'
   }
 ];
 
 export default function FeaturesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
   return (
-    <section id="features-section" className="py-20 bg-white" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="features-section" className="py-24 bg-gray-50" ref={ref}>
+      <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
             {t('featuresTitle')}
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
             {t('featuresIntro')}
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-gray-200 h-full">
+              <div className="bg-white rounded-3xl p-8 hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-gray-200 h-full hover:-translate-y-1">
                 {/* Icon */}
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <span className="text-2xl">{feature.icon}</span>
+                <div className={`w-16 h-16 rounded-2xl ${feature.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <span className="text-3xl">{feature.icon}</span>
                 </div>
                 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4 tracking-tight">
                   {t(feature.titleKey as keyof typeof import('@/hooks/useLanguage').translations.pl)}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed font-light">
                   {t(feature.descKey as keyof typeof import('@/hooks/useLanguage').translations.pl)}
                 </p>
-                
-                {/* Hover effect line */}
-                <div className="mt-6 h-1 bg-gray-100 rounded-full overflow-hidden">
-                  <div className={`h-full bg-gradient-to-r ${feature.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}></div>
-                </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Stats section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
-        >
-          {[
-            { number: '7', label: t('batteryLife'), suffix: '' },
-            { number: '99', label: t('measurementAccuracy'), suffix: '%' },
-            { number: '24', label: t('monitoring'), suffix: '/7' },
-            { number: '50', label: t('waterResistance'), suffix: 'm' }
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
-                {stat.number}{stat.suffix}
-              </div>
-              <div className="text-sm md:text-base text-gray-600">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
+
       </div>
     </section>
   );

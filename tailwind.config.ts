@@ -9,54 +9,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Monochromatic palette inspired by EDGE LIFESTYLE
+        // Monochromatic palette
         primary: {
-          50: '#fafafa',
-          100: '#f5f5f5',
-          200: '#e5e5e5',
-          300: '#d4d4d4',
-          400: '#a3a3a3',
-          500: '#737373',
-          600: '#525252',
-          700: '#404040',
-          800: '#262626',
-          900: '#171717',
-          950: '#0a0a0a',
+          50: '#f8f9fa',
+          100: '#f1f3f4',
+          200: '#e8eaed',
+          300: '#dadce0',
+          400: '#bdc1c6',
+          500: '#9aa0a6',
+          600: '#80868b',
+          700: '#5f6368',
+          800: '#3c4043',
+          900: '#202124',
+          950: '#000000',
         },
+        // Accent colors - simplified to grayscale
         accent: {
-          // Subtle accent colors
-          blue: {
-            50: '#f8fafc',
-            100: '#f1f5f9',
-            200: '#e2e8f0',
-            300: '#cbd5e1',
-            400: '#94a3b8',
-            500: '#64748b',
-            600: '#475569',
-            700: '#334155',
-            800: '#1e293b',
-            900: '#0f172a',
-          },
-          cream: '#faf7f2',
-          beige: '#f5f5dc',
-          steel: '#4682b4',
-          navy: '#000080',
-          espresso: '#614051',
-          shadow: '#2f2f2f',
+          blue: '#000000',
+          green: '#000000',
+          purple: '#000000',
+          orange: '#000000',
         },
-        // Sale/CTA accent
-        sale: {
-          50: '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316',
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
-        }
       },
       animation: {
         'fade-in': 'fade-in 0.6s ease-out',
@@ -128,8 +101,9 @@ const config: Config = {
         xs: '2px',
       },
       fontFamily: {
-        'display': ['Inter', 'system-ui', 'sans-serif'],
-        'body': ['Inter', 'system-ui', 'sans-serif'],
+        'sans': ['var(--font-poppins)', 'system-ui', 'sans-serif'],
+        'display': ['var(--font-poppins)', 'system-ui', 'sans-serif'],
+        'body': ['var(--font-poppins)', 'system-ui', 'sans-serif'],
       },
     },
   },

@@ -28,7 +28,7 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transform scale-110 translate-y-8"
           onLoadStart={() => console.log('🎬 Video loading started')}
           onCanPlay={() => console.log('✅ Video can play')}
           onError={(e) => console.error('❌ Video error:', e)}
@@ -89,15 +89,15 @@ export default function HeroSection() {
           >
             <Button
               onClick={scrollToOrder}
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 text-xl font-semibold shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+              variant="primary"
+              size="xl"
             >
               {t('orderNow')}
             </Button>
             <Button
               variant="outline"
-              size="lg"
-              className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-10 py-5 text-xl font-semibold shadow-2xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm bg-white/10"
+              size="xl"
+              className="border-2 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm bg-white/10"
               onClick={() => {
                 const featuresSection = document.getElementById('features-section');
                 featuresSection?.scrollIntoView({ behavior: 'smooth' });

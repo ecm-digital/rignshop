@@ -7,9 +7,9 @@ export default function DetailsSection() {
   return (
     <section className="relative py-24 overflow-hidden">
       {/* Decorative background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" />
-      <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-blue-200/30 blur-3xl" />
-      <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-purple-200/30 blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
+      <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-gray-200/30 blur-3xl" />
+      <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-gray-300/30 blur-3xl" />
 
       <div className="relative container mx-auto px-4 max-w-6xl">
         {/* Aligned heading (outside grid to zachować spójny margines) */}

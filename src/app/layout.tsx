@@ -1,10 +1,11 @@
-import { Inter } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import './globals.css';
 import Providers from '@/components/Providers';
 
-const inter = Inter({
+const poppins = Poppins({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-poppins',
 });
 
 export default function RootLayout({
@@ -14,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html className="scroll-smooth">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${poppins.variable} font-sans antialiased`}>
         <Providers>
           {children}
         </Providers>

@@ -36,17 +36,17 @@ export default function LanguageSelector() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-white border border-gray-200 hover:bg-gray-50 transition-colors duration-200"
+        className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-white/10 border border-gray-600 hover:bg-white/20 transition-colors duration-200"
       >
         <span className="text-lg">{currentLanguage.flag}</span>
-        <span className="text-sm font-medium text-gray-700">{currentLanguage.code.toUpperCase()}</span>
+        <span className="text-sm font-medium text-white">{currentLanguage.code.toUpperCase()}</span>
         {isAutoDetected && (
-          <span className="text-xs text-green-600 bg-green-100 px-1.5 py-0.5 rounded-full">
+          <span className="text-xs text-green-400 bg-green-900/30 px-1.5 py-0.5 rounded-full">
             Auto
           </span>
         )}
         <svg 
-          className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 text-gray-300 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
@@ -66,7 +66,7 @@ export default function LanguageSelector() {
                 key={lang.code}
                 onClick={() => handleLanguageChange(lang.code)}
                 className={`w-full flex items-center justify-between px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${
-                  language === lang.code ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                  language === lang.code ? 'bg-gray-100 text-black' : 'text-gray-700'
                 }`}
               >
                 <div className="flex items-center space-x-3">
@@ -74,7 +74,7 @@ export default function LanguageSelector() {
                   <span className="text-sm font-medium">{lang.name}</span>
                 </div>
                 {isLangAutoDetected && (
-                  <span className="text-xs text-green-600 bg-green-100 px-1.5 py-0.5 rounded-full">
+                  <span className="text-xs text-black bg-gray-200 px-1.5 py-0.5 rounded-full">
                     Auto
                   </span>
                 )}

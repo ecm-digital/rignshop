@@ -5,7 +5,8 @@ import { useState, useEffect, useRef } from 'react';
 import LanguageSelector from '@/components/LanguageSelector';
 import ProductGallery from '@/components/ProductGallery';
 import FeaturesSection from '@/components/sections/FeaturesSection';
-import DetailsSection from '@/components/sections/DetailsSection';
+import ExtendedProductSection from '@/components/sections/ExtendedProductSection';
+import { Button } from '@/components/ui/Button';
 import FAQSection from '@/components/sections/FAQSection';
 
 export default function Home() {
@@ -132,65 +133,56 @@ export default function Home() {
   const ctaHref = 'https://npstq1-x0.myshopify.com/products/r09-smart-ring-waterproof-5atm-health-fitness-rings-heart-rate-blood-oxygen-sleep-monitoring-with-charging-case-for-ios-android-copy-copy';
 
   return (
-    <main className="min-h-screen bg-primary-50">
+    <main className="min-h-screen bg-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-primary-950 border-b border-primary-800 shadow-lg">
-        <div className="container mx-auto px-4 py-4">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/90 border-b border-gray-800/20 shadow-sm">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <h1 className="text-2xl font-bold text-primary-50 font-display">
+              <div className="w-8 h-8 bg-gradient-to-br from-gray-800 to-black rounded-lg flex items-center justify-center shadow-lg">
+                <span className="text-white text-lg font-bold">S</span>
+              </div>
+              <h1 className="text-xl font-semibold text-white tracking-tight">
                 Smart Ring
               </h1>
             </div>
             
             {/* Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="group relative text-sm font-medium text-primary-200 hover:text-primary-50 transition-colors duration-300">
+              <a href="#features" className="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200">
                 {t('features')}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-50 group-hover:w-full transition-all duration-300"></span>
               </a>
-              <a href="#specifications" className="group relative text-sm font-medium text-primary-200 hover:text-primary-50 transition-colors duration-300">
+              <a href="#specifications" className="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200">
                 {t('specifications')}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-50 group-hover:w-full transition-all duration-300"></span>
               </a>
-              <a href="#order" className="group relative text-sm font-medium text-primary-200 hover:text-primary-50 transition-colors duration-300">
+              <a href="#order" className="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200">
                 {t('order')}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-50 group-hover:w-full transition-all duration-300"></span>
               </a>
             </nav>
 
-            {/* Language selector and CTA */}
+            {/* Language selector */}
             <div className="flex items-center space-x-4">
               <LanguageSelector />
-              <a
-                href="#order"
-                className="group relative bg-primary-50 hover:bg-primary-100 text-primary-900 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-md border border-primary-200"
-              >
-                <span className="relative z-10">{t('orderNow')}</span>
-              </a>
             </div>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen pt-24 overflow-hidden">
+      <section className="relative min-h-screen pt-20 overflow-hidden bg-black">
         {/* Video background */}
         <div className="absolute inset-0">
           <video
             ref={videoRef}
-            src="/hero-video.mp4"
             autoPlay
             loop
             muted
-            defaultMuted
             playsInline
-            preload="auto"
+            preload="metadata"
             poster="/video-poster.svg"
-            className="w-full h-full object-cover object-top scale-[1.06]"
+            className="w-full h-full object-cover transform scale-110 translate-y-8"
             onCanPlay={() => {
-              // Attempt to play again when ready
               const v = videoRef.current;
               if (v && v.paused) {
                 v.play().catch(() => {});
@@ -203,30 +195,50 @@ export default function Home() {
                 v.play().catch(() => {});
               }
             }}
-          />
-          {/* Dark overlay for readability */}
-          <div className="absolute inset-0 bg-black/40"></div>
-          {/* Bottom gradient to hide watermark */}
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+          >
+            <source src="/hero-video.webm" type="video/webm" />
+            <source src="/hero-video.mp4" type="video/mp4" />
+            {/* Fallback dla przeglądarek bez obsługi wideo */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
+              <img src="/video-poster.svg" alt="Smart Ring" className="w-full h-full object-cover" />
+            </div>
+          </video>
+          {/* Subtle overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/30"></div>
         </div>
 
         {/* Content overlay */}
-        <div className="relative z-10 container mx-auto px-4 py-20 text-center">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight font-display">
+        <div className="relative z-10 container mx-auto px-6 py-32 text-center">
+          <div className="max-w-4xl mx-auto">
+            {/* Apple-style typography */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight tracking-tight">
               {t('heroTitle')}
-              <br />
-              <span className="text-blue-400">{t('heroTitleHighlight')}</span>
+            </h1>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-light text-blue-400 mb-8 tracking-tight">
+              {t('heroTitleHighlight')}
             </h2>
-            <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
               {t('heroDescription')}
             </p>
-            <a
-              href={ctaHref}
-              className="inline-block bg-white/90 hover:bg-white text-primary-900 px-10 py-5 rounded-2xl text-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-white"
-            >
-              {priceText ? `${t('orderNow')} • ${priceText}` : t('orderNowPrice')}
-            </a>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button
+                variant="primary"
+                size="xl"
+                className="shadow-2xl"
+                onClick={() => window.location.href = ctaHref}
+              >
+                {priceText ? `${t('orderNow')} • ${priceText}` : t('orderNowPrice')}
+              </Button>
+            </div>
+          </div>
+        </div>
+        
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
@@ -234,29 +246,31 @@ export default function Home() {
       {/* Features (stable) */}
       <FeaturesSection />
 
+      {/* Extended Product Description */}
+      <ExtendedProductSection />
+
       {/* Product Gallery */}
       <ProductGallery />
 
-      {/* Long description */}
-      <DetailsSection />
+
 
       {/* FAQ */}
       <FAQSection />
 
       {/* Order Section */}
-      <section id="order" className="py-24 bg-gradient-to-br from-primary-50 via-white to-primary-100 relative">
+      <section id="order" className="py-24 bg-gray-50 relative">
         {/* Background decorative elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-primary-200/30 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-primary-200/30 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-gray-200/30 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-gray-200/30 to-transparent rounded-full blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6 font-display">
+            <h3 className="text-4xl md:text-5xl font-bold text-black mb-6 font-display">
               {t('orderTitle')}
             </h3>
-            <p className="text-xl text-primary-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               {t('orderSubtitle')}
             </p>
           </div>
@@ -264,16 +278,16 @@ export default function Home() {
           <div className="max-w-lg mx-auto">
             <div className="relative group">
               {/* Card glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-300/20 via-primary-400/20 to-primary-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-300/20 via-gray-400/20 to-gray-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
               
               {/* Main card */}
-              <div className="relative bg-white border border-primary-200 rounded-3xl p-10 shadow-2xl group-hover:shadow-3xl transition-all duration-300 transform group-hover:-translate-y-1">
+              <div className="relative bg-white border border-gray-200 rounded-3xl p-10 shadow-2xl group-hover:shadow-3xl transition-all duration-300 transform group-hover:-translate-y-1">
                 {/* Price section */}
                 <div className="text-center mb-8">
-                  <div className="text-5xl font-bold text-primary-900 mb-2">
+                  <div className="text-5xl font-bold text-black mb-2">
                     {t('price')}
                   </div>
-                  <p className="text-primary-500 text-sm">{t('orderSubtitle')}</p>
+                  <p className="text-gray-500 text-sm">{t('orderSubtitle')}</p>
                 </div>
                 
                 {/* Features list */}
@@ -293,13 +307,18 @@ export default function Home() {
                 </ul>
                 
                 {/* CTA Button */}
-                <a href={ctaHref} className="block w-full group/btn relative bg-primary-900 hover:bg-primary-800 text-primary-50 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border border-primary-700 flex items-center justify-center text-center">
-                  <span className="relative z-10">{priceText ? `${t('orderNow')} • ${priceText}` : t('orderNow')}</span>
-                </a>
+                <Button
+                  variant="primary"
+                  size="xl"
+                  className="w-full shadow-xl"
+                  onClick={() => window.location.href = ctaHref}
+                >
+                  {priceText ? `${t('orderNow')} • ${priceText}` : t('orderNow')}
+                </Button>
                 
                 {/* Additional info */}
                 <div className="text-center mt-6">
-                  <p className="text-sm text-primary-500">
+                  <p className="text-sm text-gray-500">
                     {t('orderAdditionalInfo')}
                   </p>
                 </div>
@@ -310,11 +329,11 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary-950 text-white py-16 relative overflow-hidden">
+      <footer className="bg-black text-white py-16 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-primary-800/10 to-primary-700/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-primary-700/10 to-primary-800/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-gray-800/10 to-gray-700/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-gray-700/10 to-gray-800/10 rounded-full blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -322,10 +341,10 @@ export default function Home() {
             {/* Brand */}
             <div className="text-center md:text-left">
               <div className="flex items-center justify-center md:justify-start space-x-3 mb-6">
-                <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center shadow-lg">
-                  <span className="text-primary-900 text-2xl font-bold">💍</span>
+                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-black text-2xl font-bold">💍</span>
                 </div>
-                <h4 className="text-3xl font-bold text-primary-50 font-display">
+                <h4 className="text-3xl font-bold text-white font-display">
                   Smart Ring
                 </h4>
               </div>
